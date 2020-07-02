@@ -1,0 +1,219 @@
+<template>
+  <el-table
+    :data="tableData"
+    style="width: 1750px;height: 850px"
+    :stripe="true"
+    :border="true"
+  >
+    <el-table-column type="expand">
+      <template slot-scope="props">
+        <el-form label-position="left" inline class="demo-table-expand">
+          <el-form-item label="老人姓名">
+            <span>{{ props.row.username }}</span>
+          </el-form-item>
+          <el-form-item label="性别">
+            <span>{{ props.row.gender }}</span>
+          </el-form-item>
+          <el-form-item label="电话">
+            <span>{{ props.row.phone }}</span>
+          </el-form-item>
+          <el-form-item label="身份证">
+            <span>{{ props.row.id_card }}</span>
+          </el-form-item>
+          <el-form-item label="出生日期">
+            <span>{{ props.row.birthday }}</span>
+          </el-form-item>
+          <el-form-item label="入院日期">
+            <span>{{ props.row.checkin_date }}</span>
+          </el-form-item>
+          <el-form-item label="出院日期">
+            <span>{{ props.row.checkout_date }}</span>
+          </el-form-item>
+          <el-form-item label="房间号">
+            <span>{{ props.row.room_number }}</span>
+          </el-form-item>
+          <el-form-item label="第一监护人">
+            <span>{{ props.row.firstguardian_name }}</span>
+          </el-form-item>
+          <el-form-item label="与第一监护人关系">
+            <span>{{ props.row.firstguardian_relationship }}</span>
+          </el-form-item>
+          <el-form-item label="第一监护人电话">
+            <span>{{ props.row.firstguardian_phone }}</span>
+          </el-form-item>
+          <el-form-item label="第一监护人微信">
+            <span>{{ props.row.firstguardian_wechat }}</span>
+          </el-form-item>
+          <el-form-item label="第二监护人">
+            <span>{{ props.row.secondguardian_name }}</span>
+          </el-form-item>
+          <el-form-item label="与第二监护人关系">
+            <span>{{ props.row.secondguardian_relationship }}</span>
+          </el-form-item>
+          <el-form-item label="第二监护人电话">
+            <span>{{ props.row.secondguardian_phone }}</span>
+          </el-form-item>
+          <el-form-item label="第二监护人微信">
+            <span>{{ props.row.secondguardian_wechat }}</span>
+          </el-form-item>
+        </el-form>
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="ID"
+      prop="ID"
+      :resizable="false">
+    </el-table-column>
+    <el-table-column
+      label="老人姓名"
+      prop="username">
+    </el-table-column>
+    <el-table-column
+      label="性别"
+      prop="gender">
+    </el-table-column>
+    <el-table-column
+      label="身份证"
+      prop="id_card">
+    </el-table-column>
+  </el-table>
+</template>
+
+<script>
+  export default {
+    name: "SeniorTable",
+    data() {
+      return {
+        tableData: [{
+          ID: '1',
+          ORG_ID: '',
+          CLIENT_ID: '',
+          username: '老李',
+          gender: '男',
+          phone: '123456',
+          id_card: '123',
+          birthday: '1956-05-05',
+          checkin_date: '2020-05-05',
+          checkout_date: '2020-05-05',
+          imgset_dir: '',
+          profile_photo: '',
+          room_number: '101',
+          firstguardian_name: '小李',
+          firstguardian_relationship: '父子',
+          firstguardian_phone: '123',
+          firstguardian_wechat: 'xiaoli',
+          secondguardian_name: '小张',
+          secondguardian_relationship: '父女',
+          secondguardian_phone: '123',
+          secondguardian_wechat: 'xiaozhang'
+        }, {
+          ID: '2',
+          ORG_ID: '',
+          CLIENT_ID: '',
+          username: '老张',
+          gender: '女',
+          phone: '123456',
+          id_card: '123',
+          birthday: '1956-05-05',
+          checkin_date: '2020-05-05',
+          checkout_date: '2020-05-05',
+          imgset_dir: '',
+          profile_photo: '',
+          room_number: '101',
+          firstguardian_name: '小李',
+          firstguardian_relationship: '母子',
+          firstguardian_phone: '123',
+          firstguardian_wechat: 'xiaoli',
+          secondguardian_name: '小张',
+          secondguardian_relationship: '母女',
+          secondguardian_phone: '123',
+          secondguardian_wechat: 'xiaozhang'
+        }, {
+          ID: '3',
+          ORG_ID: '',
+          CLIENT_ID: '',
+          username: '老陈',
+          gender: '男',
+          phone: '123456',
+          id_card: '123',
+          birthday: '1956-05-05',
+          checkin_date: '2020-05-05',
+          checkout_date: '2020-05-05',
+          imgset_dir: '',
+          profile_photo: '',
+          room_number: '101',
+          firstguardian_name: '小李',
+          firstguardian_relationship: '父子',
+          firstguardian_phone: '123',
+          firstguardian_wechat: 'xiaoli',
+          secondguardian_name: '小张',
+          secondguardian_relationship: '父女',
+          secondguardian_phone: '123',
+          secondguardian_wechat: 'xiaozhang'
+        }, {
+          ID: '3',
+          ORG_ID: '',
+          CLIENT_ID: '',
+          username: '老吴',
+          gender: '男',
+          phone: '123456',
+          id_card: '123',
+          birthday: '1956-05-05',
+          checkin_date: '2020-05-05',
+          checkout_date: '2020-05-05',
+          imgset_dir: '',
+          profile_photo: '',
+          room_number: '101',
+          firstguardian_name: '小李',
+          firstguardian_relationship: '父子',
+          firstguardian_phone: '123',
+          firstguardian_wechat: 'xiaoli',
+          secondguardian_name: '小张',
+          secondguardian_relationship: '父女',
+          secondguardian_phone: '123',
+          secondguardian_wechat: 'xiaozhang'
+        },
+          {
+            ID: '4',
+            ORG_ID: '',
+            CLIENT_ID: '',
+            username: '老周',
+            gender: '男',
+            phone: '123456',
+            id_card: '123',
+            birthday: '1956-05-05',
+            checkin_date: '2020-05-05',
+            checkout_date: '2020-05-05',
+            imgset_dir: '',
+            profile_photo: '',
+            room_number: '101',
+            firstguardian_name: '小李',
+            firstguardian_relationship: '父子',
+            firstguardian_phone: '123',
+            firstguardian_wechat: 'xiaoli',
+            secondguardian_name: '小张',
+            secondguardian_relationship: '父女',
+            secondguardian_phone: '123',
+            secondguardian_wechat: 'xiaozhang'
+          }]
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .demo-table-expand {
+    font-size: 0;
+  }
+
+  .demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+  }
+
+  .demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+  }
+</style>
