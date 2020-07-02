@@ -8,19 +8,19 @@
 </template>
 
 <script>
-  export default {
-    name: "EventInfo",
-    data() {
-      return {
-        activeName: '7'
-      }
-    },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
+export default {
+  name: 'EventInfo',
+  data () {
+    return {
+      activeName: '7'
+    }
+  },
+  methods: {
+    handleClick (tab, event) {
+      console.log(tab, event)
     }
   }
+}
 </script>
 
 <style scoped>

@@ -8,17 +8,17 @@
 </template>
 
 <script>
-  import Login from "./login";
+import Login from './login'
 
-  export default {
-    name: 'HelloWorld',
-    components: {Login},
-    data() {
-      return {
-        msg: 'Welcome to Your Vue.js App'
-      }
+export default {
+  name: 'HelloWorld',
+  components: {Login},
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -30,10 +30,12 @@
     position: fixed;
     width: 1904px;
   }
-  .hello{
+
+  .hello {
     width: 18px;
     height: 942px;
   }
+
   span {
     color: white;
     font: 24px/24px 'Microsoft Himalaya';

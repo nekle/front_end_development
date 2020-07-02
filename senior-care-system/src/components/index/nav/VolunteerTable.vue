@@ -59,74 +59,74 @@
 </template>
 
 <script>
-  export default {
-    name: "VolunteerTable",
-    data() {
-      return {
-        tableData: [{
-          id: '1',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          name: '小李',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          checkin_date: '2020-05-05',
-          checkout_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          DESCRIPTION: '大学生义工',
-          ISACTIVE: '在职',
-          CREATED: '',
-          CREATEBY: '',
-          UPDATED: '',
-          UPDATEBY: '',
-          REMOVE: ''
-        }, {
-          id: '2',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          name: '小吴',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          checkin_date: '2020-05-05',
-          checkout_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          DESCRIPTION: '大学生义工',
-          ISACTIVE: '在职',
-          CREATED: '',
-          CREATEBY: '',
-          UPDATED: '',
-          UPDATEBY: '',
-          REMOVE: ''
-        }, {
-          id: '3',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          name: '小陈',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          checkin_date: '2020-05-05',
-          checkout_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          DESCRIPTION: '大学生义工',
-          ISACTIVE: '在职',
-          CREATED: '',
-          CREATEBY: '',
-          UPDATED: '',
-          UPDATEBY: '',
-          REMOVE: ''
-        }]
-      }
+export default {
+  name: 'VolunteerTable',
+  data () {
+    return {
+      tableData: [{
+        id: '1',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        name: '小李',
+        gender: '男',
+        phone: '123456',
+        id_card: '123',
+        birthday: '1956-05-05',
+        checkin_date: '2020-05-05',
+        checkout_date: '2020-05-05',
+        imgset_dir: '',
+        profile_photo: '',
+        DESCRIPTION: '大学生义工',
+        ISACTIVE: '在职',
+        CREATED: '',
+        CREATEBY: '',
+        UPDATED: '',
+        UPDATEBY: '',
+        REMOVE: ''
+      }, {
+        id: '2',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        name: '小吴',
+        gender: '男',
+        phone: '123456',
+        id_card: '123',
+        birthday: '1956-05-05',
+        checkin_date: '2020-05-05',
+        checkout_date: '2020-05-05',
+        imgset_dir: '',
+        profile_photo: '',
+        DESCRIPTION: '大学生义工',
+        ISACTIVE: '在职',
+        CREATED: '',
+        CREATEBY: '',
+        UPDATED: '',
+        UPDATEBY: '',
+        REMOVE: ''
+      }, {
+        id: '3',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        name: '小陈',
+        gender: '男',
+        phone: '123456',
+        id_card: '123',
+        birthday: '1956-05-05',
+        checkin_date: '2020-05-05',
+        checkout_date: '2020-05-05',
+        imgset_dir: '',
+        profile_photo: '',
+        DESCRIPTION: '大学生义工',
+        ISACTIVE: '在职',
+        CREATED: '',
+        CREATEBY: '',
+        UPDATED: '',
+        UPDATEBY: '',
+        REMOVE: ''
+      }]
     }
   }
+}
 </script>
 
 <style scoped>

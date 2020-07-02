@@ -34,78 +34,78 @@
   </div>
 </template>
 <script>
-  import {mapMutations} from 'vuex'
-  import axios from 'axios'
+import {mapMutations} from 'vuex'
+import axios from 'axios'
 
-  export default {
-    name: 'login',
-    data() {
-      return {
-        header: '用户登录',
-        radio: 'user',
-        loginOrChange: '登录',
-        my_cls: 'btn',
-        loginForm: {
-          account: '',
-          password: ''
-        },
-        info: {},
-        name: ''
+export default {
+  name: 'login',
+  data () {
+    return {
+      header: '用户登录',
+      radio: 'user',
+      loginOrChange: '登录',
+      my_cls: 'btn',
+      loginForm: {
+        account: '',
+        password: ''
+      },
+      info: {},
+      name: ''
+    }
+  },
+  methods: {
+    loginHeader1 () {
+      this.header = '用户登录'
+    },
+    loginHeader2 () {
+      this.header = '管理员登录'
+    },
+    ...mapMutations(['changeLogin']),
+    register () {
+      this.$router.push('/register')
+    },
+    forget () {
+      this.$router.push('forget')
+    },
+    login1 () {
+      if (this.radio === 'manager') {
+        this.$router.push('/index')
+      } else {
+        this.$router.push('/userIndex')
       }
     },
-    methods: {
-      loginHeader1() {
-        this.header = '用户登录'
-      },
-      loginHeader2() {
-        this.header = '管理员登录'
-      },
-      ...mapMutations(['changeLogin']),
-      register() {
-        this.$router.push('/register')
-      },
-      forget() {
-        this.$router.push('forget')
-      },
-      login1() {
-        if (this.radio == 'manager') {
-          this.$router.push('/index')
-        } else {
-          this.$router.push('/userIndex')
+    ...mapMutations(['changeLogin']),
+    login () {
+      let _this = this
+      var params = new URLSearchParams()
+      params.append('username', this.loginForm.username)
+      params.append('password', this.loginForm.password)
+      this.$cookies.set('account', this.loginForm.email)
+      this.$cookies.set('password', this.loginForm.password)
+      axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/login', params).then(res => {
+        if (res.data.code === 300100) {
+          alert('用户不存在')
+        } else if (res.data.code === 300101) {
+          alert('密码不正确')
+        } else { // 成功
+          console.log('登录返回')
+          console.log(res)
+          console.log('token')
+          console.log(res.data.data.token)
+          _this.userToken = res.data.data.token
+          console.log(_this.userToken)
+          // 将用户token保存到vuex中
+          _this.changeLogin({token: _this.userToken})
+          alert('登陆成功')
+          this.$router.push('/Index')
         }
-      },
-      ...mapMutations(['changeLogin']),
-      login() {
-        let _this = this
-        var params = new URLSearchParams()
-        params.append('username', this.loginForm.username)
-        params.append('password', this.loginForm.password)
-        this.$cookies.set('account', this.loginForm.email)
-        this.$cookies.set('password', this.loginForm.password)
-        axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/login', params).then(res => {
-          if (res.data.code == 300100) {
-            alert('用户不存在')
-          } else if (res.data.code == 300101) {
-            alert('密码不正确')
-          } else { // 成功
-            console.log('登录返回')
-            console.log(res)
-            console.log('token')
-            console.log(res.data.data.token)
-            _this.userToken = res.data.data.token
-            console.log(_this.userToken)
-            // 将用户token保存到vuex中
-            _this.changeLogin({token: _this.userToken})
-            alert('登陆成功')
-            this.$router.push('/Index')
-          }
-        }).catch(error => {
-          alert('账号或密码错误或超时')
-          console.log(error)
-        })
-      }
+      }).catch(error => {
+        alert('账号或密码错误或超时')
+        console.log(error)
+      })
     }
   }
+}
 </script>
 <style scoped>
   .loginBox {

@@ -20,7 +20,7 @@
             :visible.sync="drawer"
             :direction="direction"
           >
-            <manager-person-info/>
+            <manager-person-info />
           </el-drawer>
         </div>
       </el-header>
@@ -38,12 +38,12 @@
                 <el-step description="闭眼照片"></el-step>
                 <el-step description="仰头照片"></el-step>
               </el-steps>
-              <pic-upload/>
+              <pic-upload />
               <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
             </div>
           </el-tab-pane>
           <el-tab-pane label="老人视频上传" name="videoUpload">
-            <video-upload/>
+            <video-upload />
           </el-tab-pane>
         </el-tabs>
       </el-container>
@@ -51,50 +51,50 @@
   </div>
 </template>
 
-
 <script>
-  import ActionWatcher from "./nav/ActionWatcher";
-  import Statistics from "./nav/Statistics";
-  import SeniorInfo from "./nav/SeniorInfo";
-  import VideoUpload from "./userNav/videoUpload";
-  import PicUpload from "./userNav/picUpload";
-  import ManagerPersonInfo from "./nav/ManagerPersonInfo";
-  export default {
-    name: "UserIndex",
-    data() {
-      return {
-        active: 0,
-        props: {
-          active: {
-            type: String,
-            required: true
-          }
-        },
-        drawer: false,
-        direction: 'rtl',
-        avatar_size: 'large'
-      };
-    },
-    components: {
-      PicUpload,
-      VideoUpload,
-      SeniorInfo,
-      ActionWatcher,
-      Statistics,
-      ManagerPersonInfo
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        this.$emit('update:active', key)
+import ActionWatcher from './nav/ActionWatcher'
+import Statistics from './nav/Statistics'
+import SeniorInfo from './nav/SeniorInfo'
+import VideoUpload from './userNav/videoUpload'
+import PicUpload from './userNav/picUpload'
+import ManagerPersonInfo from './nav/ManagerPersonInfo'
+
+export default {
+  name: 'UserIndex',
+  data () {
+    return {
+      active: 0,
+      props: {
+        active: {
+          type: String,
+          required: true
+        }
       },
-      next() {
-        if (this.active++ > 5) this.active = 0;
-      },
-      goBack() {
-        this.$router.push('/')
-      }
+      drawer: false,
+      direction: 'rtl',
+      avatar_size: 'large'
+    }
+  },
+  components: {
+    PicUpload,
+    VideoUpload,
+    SeniorInfo,
+    ActionWatcher,
+    Statistics,
+    ManagerPersonInfo
+  },
+  methods: {
+    handleSelect (key, keyPath) {
+      this.$emit('update:active', key)
+    },
+    next () {
+      if (this.active++ > 5) this.active = 0
+    },
+    goBack () {
+      this.$router.push('/')
     }
   }
+}
 </script>
 <style scoped>
   .infoBar {

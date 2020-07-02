@@ -20,117 +20,117 @@
 </template>
 
 <script>
-  // custom skin css
-  export default {
-    data () {
-      return {
-        // videojs options
-        playerOptions: {
-          height: '360',
-          autoplay: false,
-          muted: true,
-          language: 'en',
-          playbackRates: [0.7, 1.0, 1.5, 2.0],
-          sources: [{
-            // type:'application/x-mpegURL',
-             type: 'video/mp4',
-            // mp4
-             src: 'http://vjs.zencdn.net/v/oceans.mp4'
-            // src:'http://21810.liveplay.myqcloud.com/live/21810_ea70a9e139.m3u8'
-            // webm
-            // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-          }],
-          poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg'
-        }
-      }
-    },
-    mounted () {
-      // console.log('this is current player instance object', this.player)
-      setTimeout(() => {
-        console.log('dynamic change options', this.player)
-        // change src
-        // this.playerOptions.sources[0].src = 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm';
-        // change item
-        // this.$set(this.playerOptions.sources, 0, {
-        //   type: "video/mp4",
-        //   src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm',
-        // })
-        // change array
-        // this.playerOptions.sources = [{
-        //   type: "video/mp4",
-        //   src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm',
-        // }]
-        this.player.muted(false)
-      }, 5000)
-    },
-    computed: {
-      player () {
-        return this.$refs.videoPlayer.player
-      }
-    },
-    methods: {
-      // listen event
-      onPlayerPlay (player) {
-        // console.log('player play!', player)
-      },
-      onPlayerPause (player) {
-        // console.log('player pause!', player)
-      },
-      onPlayerEnded (player) {
-        // console.log('player ended!', player)
-      },
-      onPlayerLoadeddata (player) {
-        // console.log('player Loadeddata!', player)
-      },
-      onPlayerWaiting (player) {
-        // console.log('player Waiting!', player)
-      },
-      onPlayerPlaying (player) {
-        // console.log('player Playing!', player)
-      },
-      onPlayerTimeupdate (player) {
-        // console.log('player Timeupdate!', player.currentTime())
-      },
-      onPlayerCanplay (player) {
-        // console.log('player Canplay!', player)
-      },
-      onPlayerCanplaythrough (player) {
-        // console.log('player Canplaythrough!', player)
-      },
-      // or listen state event
-      playerStateChanged (playerCurrentState) {
-        // console.log('player current update state', playerCurrentState)
-      },
-      // player is ready
-      playerReadied (player) {
-        // seek to 10s
-        console.log('example player 1 readied', player)
-        player.currentTime(10)
-        // console.log('example 01: the player is readied', player)
+// custom skin css
+export default {
+  data () {
+    return {
+      // videojs options
+      playerOptions: {
+        height: '360',
+        autoplay: false,
+        muted: true,
+        language: 'en',
+        playbackRates: [0.7, 1.0, 1.5, 2.0],
+        sources: [{
+          // type:'application/x-mpegURL',
+          type: 'video/mp4',
+          // mp4
+          src: 'http://vjs.zencdn.net/v/oceans.mp4'
+          // src:'http://21810.liveplay.myqcloud.com/live/21810_ea70a9e139.m3u8'
+          // webm
+          // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+        }],
+        poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg'
       }
     }
+  },
+  mounted () {
+    // console.log('this is current player instance object', this.player)
+    setTimeout(() => {
+      console.log('dynamic change options', this.player)
+      // change src
+      // this.playerOptions.sources[0].src = 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm';
+      // change item
+      // this.$set(this.playerOptions.sources, 0, {
+      //   type: "video/mp4",
+      //   src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm',
+      // })
+      // change array
+      // this.playerOptions.sources = [{
+      //   type: "video/mp4",
+      //   src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm',
+      // }]
+      this.player.muted(false)
+    }, 5000)
+  },
+  computed: {
+    player () {
+      return this.$refs.videoPlayer.player
+    }
+  },
+  methods: {
+    // listen event
+    onPlayerPlay (player) {
+      // console.log('player play!', player)
+    },
+    onPlayerPause (player) {
+      // console.log('player pause!', player)
+    },
+    onPlayerEnded (player) {
+      // console.log('player ended!', player)
+    },
+    onPlayerLoadeddata (player) {
+      // console.log('player Loadeddata!', player)
+    },
+    onPlayerWaiting (player) {
+      // console.log('player Waiting!', player)
+    },
+    onPlayerPlaying (player) {
+      // console.log('player Playing!', player)
+    },
+    onPlayerTimeupdate (player) {
+      // console.log('player Timeupdate!', player.currentTime())
+    },
+    onPlayerCanplay (player) {
+      // console.log('player Canplay!', player)
+    },
+    onPlayerCanplaythrough (player) {
+      // console.log('player Canplaythrough!', player)
+    },
+    // or listen state event
+    playerStateChanged (playerCurrentState) {
+      // console.log('player current update state', playerCurrentState)
+    },
+    // player is ready
+    playerReadied (player) {
+      // seek to 10s
+      console.log('example player 1 readied', player)
+      player.currentTime(10)
+      // console.log('example 01: the player is readied', player)
+    }
   }
+}
 </script>
 <style>
 
   .vjs-custom-skin > .video-js {
     width: 100%;
-    font-family: "PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;
+    font-family: "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
   }
 
-  .vjs-custom-skin > .video-js .vjs-menu-button-inline.vjs-slider-active,.vjs-custom-skin > .video-js .vjs-menu-button-inline:focus,.vjs-custom-skin > .video-js .vjs-menu-button-inline:hover,.video-js.vjs-no-flex .vjs-menu-button-inline {
+  .vjs-custom-skin > .video-js .vjs-menu-button-inline.vjs-slider-active, .vjs-custom-skin > .video-js .vjs-menu-button-inline:focus, .vjs-custom-skin > .video-js .vjs-menu-button-inline:hover, .video-js.vjs-no-flex .vjs-menu-button-inline {
     width: 10em
   }
 
   .vjs-custom-skin > .video-js .vjs-controls-disabled .vjs-big-play-button {
-    display: none!important
+    display: none !important
   }
 
   .vjs-custom-skin > .video-js .vjs-control {
     width: 3em
   }
 
-  .vjs-custom-skin > .video-js .vjs-control.vjs-live-control{
+  .vjs-custom-skin > .video-js .vjs-control.vjs-live-control {
     width: auto;
     padding-left: .5em;
     letter-spacing: .1em;
@@ -144,15 +144,15 @@
     left: 3em
   }
 
-  .vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button,.video-js.vjs-ended .vjs-big-play-button,.video-js.vjs-paused .vjs-big-play-button {
+  .vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button, .video-js.vjs-ended .vjs-big-play-button, .video-js.vjs-paused .vjs-big-play-button {
     display: block
   }
 
-  .vjs-custom-skin > .video-js .vjs-load-progress div,.vjs-seeking .vjs-big-play-button,.vjs-waiting .vjs-big-play-button {
-    display: none!important
+  .vjs-custom-skin > .video-js .vjs-load-progress div, .vjs-seeking .vjs-big-play-button, .vjs-waiting .vjs-big-play-button {
+    display: none !important
   }
 
-  .vjs-custom-skin > .video-js .vjs-mouse-display:after,.vjs-custom-skin > .video-js .vjs-play-progress:after {
+  .vjs-custom-skin > .video-js .vjs-mouse-display:after, .vjs-custom-skin > .video-js .vjs-play-progress:after {
     padding: 0 .4em .3em
   }
 
@@ -164,7 +164,7 @@
     display: block !important;
   }
 
-  .video-js.vjs-ended .vjs-big-play-button,.video-js.vjs-paused .vjs-big-play-button,.vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button {
+  .video-js.vjs-ended .vjs-big-play-button, .video-js.vjs-paused .vjs-big-play-button, .vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button {
     display: block
   }
 
@@ -176,7 +176,7 @@
   }
 
   .vjs-custom-skin > .video-js .vjs-big-play-button {
-    background-color: rgba(0,0,0,0.45);
+    background-color: rgba(0, 0, 0, 0.45);
     font-size: 3.5em;
     /*border-radius: 50%;*/
     height: 2em !important;
@@ -184,12 +184,12 @@
     margin-top: -1em !important
   }
 
-  .video-js:hover .vjs-big-play-button,.vjs-custom-skin > .video-js .vjs-big-play-button:focus,.vjs-custom-skin > .video-js .vjs-big-play-button:active {
-    background-color: rgba(36,131,213,0.9)
+  .video-js:hover .vjs-big-play-button, .vjs-custom-skin > .video-js .vjs-big-play-button:focus, .vjs-custom-skin > .video-js .vjs-big-play-button:active {
+    background-color: rgba(36, 131, 213, 0.9)
   }
 
   .vjs-custom-skin > .video-js .vjs-loading-spinner {
-    border-color: rgba(36,131,213,0.8)
+    border-color: rgba(36, 131, 213, 0.8)
   }
 
   .vjs-custom-skin > .video-js .vjs-control-bar2 {
@@ -202,7 +202,7 @@
     font-size: 14px
   }
 
-  .vjs-custom-skin > .video-js .vjs-play-progress,.vjs-custom-skin > .video-js  .vjs-volume-level {
+  .vjs-custom-skin > .video-js .vjs-play-progress, .vjs-custom-skin > .video-js .vjs-volume-level {
     background-color: #2483d5
   }
 
@@ -222,7 +222,7 @@
     padding: 0;
     line-height: 2em;
     font-size: 1.1em;
-    font-family: "PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;
+    font-family: "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
   }
 
   .vjs-custom-skin > .video-js .vjs-time-tooltip,
@@ -264,7 +264,7 @@
     order: 1;
   }
 
-  .vjs-custom-skin > .video-js .vjs-control-bar .vjs-playback-rate .vjs-playback-rate-value{
+  .vjs-custom-skin > .video-js .vjs-control-bar .vjs-playback-rate .vjs-playback-rate-value {
     font-size: 1.2em;
     line-height: 2.4;
   }

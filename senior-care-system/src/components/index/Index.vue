@@ -20,7 +20,7 @@
             :visible.sync="drawer"
             :direction="direction"
           >
-            <manager-person-info/>
+            <manager-person-info />
           </el-drawer>
         </div>
       </el-header>
@@ -28,30 +28,30 @@
         <el-tabs v-model="activeName" @tab-click="handleClick" tab-position="left"
                  style="font: 30px/1.7 'Helvetica Neue'" type="card">
           <el-tab-pane label="概览" name="overview">
-            <overview/>
+            <overview />
           </el-tab-pane>
           <el-tab-pane label="老人行为监控" name="actionWatch">
-            <actionWatcher/>
+            <actionWatcher />
           </el-tab-pane>
           <el-tab-pane label="监控数据可视化" name="dataVisualize">
             <el-container v-loading="loading">
-              <statistics/>
+              <statistics />
             </el-container>
           </el-tab-pane>
           <el-tab-pane label="老人信息" name="oldInfo">
-            <SeniorTable/>
+            <SeniorTable />
           </el-tab-pane>
           <el-tab-pane label="员工信息" name="staffInfo">
-            <StaffTable/>
+            <StaffTable />
           </el-tab-pane>
           <el-tab-pane label="义工信息" name="volunteerInfo">
-            <VolunteerTable/>
+            <VolunteerTable />
           </el-tab-pane>
           <el-tab-pane label="管理员信息" name="managerInfo">
-            <ManagerTable/>
+            <ManagerTable />
           </el-tab-pane>
           <el-tab-pane label="事件处理" name="eventInfo">
-            <EventInfo/>
+            <EventInfo />
           </el-tab-pane>
         </el-tabs>
       </el-container>
@@ -59,69 +59,68 @@
   </div>
 </template>
 
-
 <script>
-  import ActionWatcher from "./nav/ActionWatcher";
-  import Statistics from "./nav/Statistics";
-  import SeniorInfo from "./nav/SeniorInfo";
-  import SeniorTable from "./nav/SeniorTable";
-  import StaffTable from "./nav/StaffTable";
-  import VolunteerTable from "./nav/VolunteerTable";
-  import ManagerTable from "./nav/ManagerTable";
-  import ManagerPersonInfo from "./nav/ManagerPersonInfo";
-  import EventInfo from "./nav/EventInfo";
+import ActionWatcher from './nav/ActionWatcher'
+import Statistics from './nav/Statistics'
+import SeniorInfo from './nav/SeniorInfo'
+import SeniorTable from './nav/SeniorTable'
+import StaffTable from './nav/StaffTable'
+import VolunteerTable from './nav/VolunteerTable'
+import ManagerTable from './nav/ManagerTable'
+import ManagerPersonInfo from './nav/ManagerPersonInfo'
+import EventInfo from './nav/EventInfo'
 
-  export default {
-    name: "Index",
-    data() {
-      return {
-        loading: true,
-        props: {
-          active: {
-            type: String,
-            required: true
-          }
-        },
-        drawer: false,
-        direction: 'rtl'
-      };
-    },
-    components: {
-      EventInfo,
-      ManagerPersonInfo,
-      SeniorInfo,
-      ActionWatcher,
-      Statistics,
-      SeniorTable,
-      StaffTable,
-      VolunteerTable,
-      ManagerTable
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        this.$emit('update:active', key)
+export default {
+  name: 'Index',
+  data () {
+    return {
+      loading: true,
+      props: {
+        active: {
+          type: String,
+          required: true
+        }
       },
-      refresh() {
-        this.loading = false
-      },
-      goBack() {
-        this.$router.push('/')
-      },
-      open() { //新事件提醒
-        this.$notify.warning({
-          title: '新事件发生',
-          message: '您有新事件待处理',
-          showClose: false
-        });
-      }
+      drawer: false,
+      direction: 'rtl'
+    }
+  },
+  components: {
+    EventInfo,
+    ManagerPersonInfo,
+    SeniorInfo,
+    ActionWatcher,
+    Statistics,
+    SeniorTable,
+    StaffTable,
+    VolunteerTable,
+    ManagerTable
+  },
+  methods: {
+    handleSelect (key, keyPath) {
+      this.$emit('update:active', key)
     },
-    mounted() {
-      this.$nextTick(() => {
-        setInterval(this.refresh, 2500);
-        setInterval(this.open, 5000);
+    refresh () {
+      this.loading = false
+    },
+    goBack () {
+      this.$router.push('/')
+    },
+    open () { // 新事件提醒
+      this.$notify.warning({
+        title: '新事件发生',
+        message: '您有新事件待处理',
+        showClose: false
       })
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      setInterval(this.refresh, 2500)
+      setInterval(this.open, 5000)
+    })
   }
+}
 </script>
 <style scoped>
   .infoBar {

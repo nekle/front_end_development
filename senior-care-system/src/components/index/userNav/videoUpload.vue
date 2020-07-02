@@ -3,9 +3,9 @@
 </template>
 
 <script>
-    export default {
-        name: "videoUpload"
-    }
+export default {
+  name: 'videoUpload'
+}
 </script>
 
 <style scoped>
