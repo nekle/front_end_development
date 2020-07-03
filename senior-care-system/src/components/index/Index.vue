@@ -24,8 +24,8 @@
           </el-drawer>
         </div>
       </el-header>
-      <el-container direction="horizontal" style="height: 840px;background-color: rgba(217, 236, 255,.2)">
-        <el-tabs v-model="activeName" @tab-click="handleClick" tab-position="left"
+      <el-container direction="horizontal" style="height: 840px;backgroundColor: rgba(217, 236, 255, .3)">
+        <el-tabs tab-position="left"
                  style="font: 30px/1.7 'Helvetica Neue'" type="card">
           <el-tab-pane label="概览" name="overview">
             <overview />
@@ -50,9 +50,6 @@
           <el-tab-pane label="管理员信息" name="managerInfo">
             <ManagerTable />
           </el-tab-pane>
-          <el-tab-pane label="事件处理" name="eventInfo">
-            <EventInfo />
-          </el-tab-pane>
         </el-tabs>
       </el-container>
     </el-container>
@@ -68,7 +65,7 @@ import StaffTable from './nav/StaffTable'
 import VolunteerTable from './nav/VolunteerTable'
 import ManagerTable from './nav/ManagerTable'
 import ManagerPersonInfo from './nav/ManagerPersonInfo'
-import EventInfo from './nav/EventInfo'
+import Overview from './nav/overview/Overview';
 
 export default {
   name: 'Index',
@@ -86,7 +83,7 @@ export default {
     }
   },
   components: {
-    EventInfo,
+    Overview,
     ManagerPersonInfo,
     SeniorInfo,
     ActionWatcher,
@@ -117,7 +114,7 @@ export default {
   mounted () {
     this.$nextTick(() => {
       setInterval(this.refresh, 2500)
-      setInterval(this.open, 5000)
+      setInterval(this.open, 10000)
     })
   }
 }
@@ -136,12 +133,15 @@ export default {
     width: 100px;
     height: 100px;
     margin-left: 20px;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);
   }
 
   .topInfo {
     display: inline-block;
     margin-left: 700px;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0 0px rgba(0, 0, 0, 0);
+  }
+
+  .block {
+    display: inline-block;
+    margin-left: 200px;
   }
 </style>

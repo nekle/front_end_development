@@ -50,10 +50,10 @@
       label="性别"
       prop="gender">
     </el-table-column>
-    <el-form-item
+    <el-table-column
       label="身份证"
       prop="id_card">
-    </el-form-item>
+    </el-table-column>
   </el-table>
 </template>
 

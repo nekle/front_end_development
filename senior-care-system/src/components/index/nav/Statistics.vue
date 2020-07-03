@@ -1,9 +1,11 @@
 <template>
-  <div id="main" style="width: 1800px;height: 850px;"></div>
+  <div>
+    <div id="main" style="width: 1800px;height: 850px;">
+    </div>
+  </div>
 </template>
 
 <script>
-import echarts from 'echarts'
 
 export default {
   name: 'Statistics',
@@ -12,8 +14,8 @@ export default {
   },
   methods: {
     drawPie (id) {
-      this.charts = echarts.init(document.getElementById(id))
-      this.charts.setOption({
+      let myChart = this.$echarts.init(document.getElementById(id))
+      myChart.setOption({
         backgroundColor: '#409eff',
         title: {
           text: '情绪雷达图',
@@ -55,9 +57,7 @@ export default {
     }
   },
   mounted () {
-    this.$nextTick(function () {
-      this.drawPie('main')
-    })
+    this.drawPie('main')
   }
 }
 </script>

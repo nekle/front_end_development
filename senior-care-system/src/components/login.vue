@@ -35,7 +35,6 @@
 </template>
 <script>
 import {mapMutations} from 'vuex'
-import axios from 'axios'
 
 export default {
   name: 'login',
@@ -82,7 +81,7 @@ export default {
       params.append('password', this.loginForm.password)
       this.$cookies.set('account', this.loginForm.email)
       this.$cookies.set('password', this.loginForm.password)
-      axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/login', params).then(res => {
+      this.$axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/login', params).then(res => {
         if (res.data.code === 300100) {
           alert('用户不存在')
         } else if (res.data.code === 300101) {

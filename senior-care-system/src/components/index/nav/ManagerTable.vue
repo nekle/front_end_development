@@ -2,7 +2,6 @@
   <el-table
     :border="true"
     :data="tableData"
-    :size="medium"
     :stripe="true"
     style="width: 1750px;height: 850px">
     <el-table-column type="expand">

@@ -3,8 +3,7 @@
     :data="tableData"
     style="width: 1750px;height: 850px"
     :stripe="true"
-    :border="true"
-    :size="medium">
+    :border="true">
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
@@ -51,10 +50,10 @@
       label="性别"
       prop="gender">
     </el-table-column>
-    <el-form-item
+    <el-table-column
       label="身份证"
       prop="id_card">
-    </el-form-item>
+    </el-table-column>
   </el-table>
 </template>
 
