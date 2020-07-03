@@ -4,7 +4,7 @@
       <div class="avatarDiv">
         <el-avatar :size='100'
                    :src="profile_photo">
-<!--          src="/static/imgs/bcg.jpg"-->
+          <!--          src="/static/imgs/bcg.jpg"-->
         </el-avatar>
       </div>
       <div class="managerIcon"><i class="el-icon-user-solid">管理员</i></div>
@@ -25,7 +25,7 @@
         placement="right"
         width="600"
         trigger="click">
-        <edit-info/>
+        <edit-info />
         <el-button type="primary" slot="reference">
           <i class="el-icon-edit"></i>
           修改个人信息
@@ -36,25 +36,26 @@
 </template>
 
 <script>
-  import EditInfo from "./editInfo";
-  export default {
-    name: "managerPersonInfo",
-    components: {EditInfo},
-    data() {
-      return {
-          id: 1,
-          username: 'admin',
-          real_name: '管理员',
-          gender: '男',
-          phone: '18811011699',
-          email: '2411178926@qq.com',
-          identity_card_id: "",
-          birthday: "",
-          profile_photo: '/static/imgs/bcg.jpg',
-          description: ""
-      }
+import EditInfo from './editInfo';
+
+export default {
+  name: 'managerPersonInfo',
+  components: {EditInfo},
+  data () {
+    return {
+      id: 1,
+      username: 'admin',
+      real_name: '管理员',
+      gender: '男',
+      phone: '18811011699',
+      email: '2411178926@qq.com',
+      identity_card_id: '',
+      birthday: '',
+      profile_photo: '/static/imgs/bcg.jpg',
+      description: ''
     }
   }
+}
 </script>
 
 <style scoped>
@@ -66,20 +67,25 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .4);
     margin-right: 20px;
   }
-  .avatarDiv{
+
+  .avatarDiv {
     display: inline-block;
     margin: 0 20px;
   }
-  .managerName{
+
+  .managerName {
     font: 24px/36px 'Microsoft YaHei';
   }
-  .detail{
+
+  .detail {
     text-align: left;
     margin: 20px 150px;
   }
-  .editPerson{
+
+  .editPerson {
     margin: 80px 214px;
   }
+
   i {
     font-size: 18px;
   }

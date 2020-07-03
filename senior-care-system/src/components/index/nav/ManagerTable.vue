@@ -1,13 +1,12 @@
 <template>
   <el-table
-    :data="tableData"
-    style="width: 1750px;height: 850px"
-    :stripe="true"
     :border="true"
-    :size="medium">
+    :data="tableData"
+    :stripe="true"
+    style="width: 1750px;height: 850px">
     <el-table-column type="expand">
       <template slot-scope="props">
-        <el-form label-position="left" inline class="demo-table-expand">
+        <el-form class="demo-table-expand" inline label-position="left">
           <el-form-item label="管理员姓名">
             <span>{{ props.row.REAL_NAME }}</span>
           </el-form-item>
@@ -45,9 +44,9 @@
       </template>
     </el-table-column>
     <el-table-column
+      :resizable="false"
       label="ID"
-      prop="ID"
-      :resizable="false">
+      prop="ID">
     </el-table-column>
     <el-table-column
       label="管理员姓名"
@@ -61,89 +60,89 @@
 </template>
 
 <script>
-  export default {
-    name: "StaffTable",
-    data() {
-      return {
-        tableData: [{
-          ID: '1',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          UserName: '',
-          Password: '',
-          REAL_NAME: '张三',
-          SEX: '男',
-          EMAIL: '123@qq.com',
-          PHONE: '123',
-          MOBILE: '123',
-          DESCRIPTION: '高级管理员',
-          ISACTIVE: '在职',
-          CREATED: '2020-01-01',
-          CREATEBY: '超级管理员',
-          UPDATED: '2020-01-01',
-          UPDATEBY: '超级管理员',
-          REMOVE: '',
-          DATAFILTER: '',
-          theme: '',
-          defaultpage: '',
-          logoimage: '',
-          qqopenid: '',
-          appversion: '',
-          jsonauth: '',
-        }, {
-          ID: '2',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          UserName: '',
-          Password: '',
-          REAL_NAME: '李四',
-          SEX: '男',
-          EMAIL: '123@qq.com',
-          PHONE: '123',
-          MOBILE: '123',
-          DESCRIPTION: '高级管理员',
-          ISACTIVE: '在职',
-          CREATED: '2020-01-01',
-          CREATEBY: '超级管理员',
-          UPDATED: '2020-01-01',
-          UPDATEBY: '超级管理员',
-          REMOVE: '',
-          DATAFILTER: '',
-          theme: '',
-          defaultpage: '',
-          logoimage: '',
-          qqopenid: '',
-          appversion: '',
-          jsonauth: '',
-        }, {
-          ID: '3',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          UserName: '',
-          Password: '',
-          REAL_NAME: '王五',
-          SEX: '男',
-          EMAIL: '123@qq.com',
-          PHONE: '123',
-          MOBILE: '123',
-          DESCRIPTION: '高级管理员',
-          ISACTIVE: '在职',
-          CREATED: '2020-01-01',
-          CREATEBY: '超级管理员',
-          UPDATED: '2020-01-01',
-          UPDATEBY: '超级管理员',
-          REMOVE: '',
-          DATAFILTER: '',
-          theme: '',
-          defaultpage: '',
-          logoimage: '',
-          qqopenid: '',
-          appversion: '',
-          jsonauth: '',
-        }]
-      }
+export default {
+  name: 'StaffTable',
+  data () {
+    return {
+      tableData: [{
+        ID: '1',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        UserName: '',
+        Password: '',
+        REAL_NAME: '张三',
+        SEX: '男',
+        EMAIL: '123@qq.com',
+        PHONE: '123',
+        MOBILE: '123',
+        DESCRIPTION: '高级管理员',
+        ISACTIVE: '在职',
+        CREATED: '2020-01-01',
+        CREATEBY: '超级管理员',
+        UPDATED: '2020-01-01',
+        UPDATEBY: '超级管理员',
+        REMOVE: '',
+        DATAFILTER: '',
+        theme: '',
+        defaultpage: '',
+        logoimage: '',
+        qqopenid: '',
+        appversion: '',
+        jsonauth: '',
+      }, {
+        ID: '2',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        UserName: '',
+        Password: '',
+        REAL_NAME: '李四',
+        SEX: '男',
+        EMAIL: '123@qq.com',
+        PHONE: '123',
+        MOBILE: '123',
+        DESCRIPTION: '高级管理员',
+        ISACTIVE: '在职',
+        CREATED: '2020-01-01',
+        CREATEBY: '超级管理员',
+        UPDATED: '2020-01-01',
+        UPDATEBY: '超级管理员',
+        REMOVE: '',
+        DATAFILTER: '',
+        theme: '',
+        defaultpage: '',
+        logoimage: '',
+        qqopenid: '',
+        appversion: '',
+        jsonauth: '',
+      }, {
+        ID: '3',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        UserName: '',
+        Password: '',
+        REAL_NAME: '王五',
+        SEX: '男',
+        EMAIL: '123@qq.com',
+        PHONE: '123',
+        MOBILE: '123',
+        DESCRIPTION: '高级管理员',
+        ISACTIVE: '在职',
+        CREATED: '2020-01-01',
+        CREATEBY: '超级管理员',
+        UPDATED: '2020-01-01',
+        UPDATEBY: '超级管理员',
+        REMOVE: '',
+        DATAFILTER: '',
+        theme: '',
+        defaultpage: '',
+        logoimage: '',
+        qqopenid: '',
+        appversion: '',
+        jsonauth: ''
+      }]
     }
   }
+}
 </script>
 
 <style scoped>

@@ -8,7 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VideoPlayer from 'vue-video-player'
 import axios from 'axios'
 import VueCookies from 'vue-cookies'
-import store from "../store"
+import store from '../store'
+// 引入echarts
+import echarts from 'echarts'
+
+Vue.prototype.$echarts = echarts
 require('video.js/dist/video-js.css')
 require('vue-video-player/src/custom-theme.css')
 Vue.use(ElementUI)
@@ -16,19 +20,12 @@ Vue.use(VideoPlayer)
 Vue.config.productionTip = false
 Vue.use(VueCookies)
 Vue.use(VideoPlayer)
-Vue.use(axios)
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
-Vue.prototype.$ip = '120.26.176.248'
+Vue.prototype.$ip = 'www.zhihuiyanglao.work'
 Vue.prototype.$port = '8099'
 
-new Vue({
-  el: '#app',
-  router,
-  components: {App},
-  template: '<App/>'
-})
-// set default config
-Vue.$cookies.config('3d')
+// eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   router,
@@ -36,6 +33,8 @@ new Vue({
   components: {App},
   template: '<App/>'
 })
+// set default config
+Vue.$cookies.config('3d')
 axios.interceptors.request.use(
   config => {
     if (localStorage.getItem('token')) {

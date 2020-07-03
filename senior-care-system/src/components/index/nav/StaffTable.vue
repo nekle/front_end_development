@@ -50,82 +50,82 @@
       label="性别"
       prop="gender">
     </el-table-column>
-    <el-form-item
+    <el-table-column
       label="身份证"
       prop="id_card">
-    </el-form-item>
+    </el-table-column>
   </el-table>
 </template>
 
 <script>
-  export default {
-    name: "StaffTable",
-    data() {
-      return {
-        tableData: [{
-          id: '1',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          username: '老李',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          hire_date: '2020-05-05',
-          resign_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          DESCRIPTION: '十佳员工',
-          ISACTIVE: '在职',
-          CREATED: '',
-          CREATEBY: '',
-          UPDATED: '',
-          UPDATEBY: '',
-          REMOVE: ''
-        }, {
-          id: '2',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          username: '老张',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          hire_date: '2020-05-05',
-          resign_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          DESCRIPTION: '十佳员工',
-          ISACTIVE: '在职',
-          CREATED: '',
-          CREATEBY: '',
-          UPDATED: '',
-          UPDATEBY: '',
-          REMOVE: ''
-        }, {
-          id: '3',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          username: '老吴',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          hire_date: '2020-05-05',
-          resign_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          DESCRIPTION: '十佳员工',
-          ISACTIVE: '在职',
-          CREATED: '',
-          CREATEBY: '',
-          UPDATED: '',
-          UPDATEBY: '',
-          REMOVE: ''
-        }]
-      }
+export default {
+  name: 'StaffTable',
+  data () {
+    return {
+      tableData: [{
+        id: '1',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        username: '老李',
+        gender: '男',
+        phone: '123456',
+        id_card: '123',
+        birthday: '1956-05-05',
+        hire_date: '2020-05-05',
+        resign_date: '2020-05-05',
+        imgset_dir: '',
+        profile_photo: '',
+        DESCRIPTION: '十佳员工',
+        ISACTIVE: '在职',
+        CREATED: '',
+        CREATEBY: '',
+        UPDATED: '',
+        UPDATEBY: '',
+        REMOVE: ''
+      }, {
+        id: '2',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        username: '老张',
+        gender: '男',
+        phone: '123456',
+        id_card: '123',
+        birthday: '1956-05-05',
+        hire_date: '2020-05-05',
+        resign_date: '2020-05-05',
+        imgset_dir: '',
+        profile_photo: '',
+        DESCRIPTION: '十佳员工',
+        ISACTIVE: '在职',
+        CREATED: '',
+        CREATEBY: '',
+        UPDATED: '',
+        UPDATEBY: '',
+        REMOVE: ''
+      }, {
+        id: '3',
+        ORG_ID: '',
+        CLIENT_ID: '',
+        username: '老吴',
+        gender: '男',
+        phone: '123456',
+        id_card: '123',
+        birthday: '1956-05-05',
+        hire_date: '2020-05-05',
+        resign_date: '2020-05-05',
+        imgset_dir: '',
+        profile_photo: '',
+        DESCRIPTION: '十佳员工',
+        ISACTIVE: '在职',
+        CREATED: '',
+        CREATEBY: '',
+        UPDATED: '',
+        UPDATEBY: '',
+        REMOVE: ''
+      }]
     }
   }
+}
 </script>
 
 <style scoped>

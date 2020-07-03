@@ -33,128 +33,126 @@
 </template>
 <script>
 
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    name: "editInfo",
-    data() {
-      var validate_real_name = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入真实姓名'))
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass')
-          }
-          callback()
+export default {
+  name: 'editInfo',
+  data () {
+    var validate_real_name = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入真实姓名'))
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
         }
+        callback()
       }
-      var validate_phone = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入电话'))
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass')
-          }
-          callback()
-        }
-      }
-      var validate_birthday = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入生日'))
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass')
-          }
-          callback()
-        }
-      }
-      var validate_gender = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入性别'))
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass')
-          }
-          callback()
-        }
-      }
-      var validate_des = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入简介'))
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            this.$refs.ruleForm.validateField('checkPass')
-          }
-          callback()
-        }
-      }
-      return {
-        ruleForm: {
-          real_name: '',
-          phone: '',
-          birthday: '',
-          description: '',
-          gender: '男'
-        },
-        rules: {
-          real_name: [
-            {validator: validate_real_name, trigger: 'blur'}
-          ],
-          phone: [
-            {validator: validate_phone, trigger: 'blur'}
-          ],
-          birthday: [
-            {validator: validate_birthday, trigger: 'blur'}
-          ]
-          ,
-          description: [
-            {validator: validate_des, trigger: 'blur'}
-          ]
-          ,
-          gender: [
-            {validator: validate_gender, trigger: 'blur'}
-          ]
-        }
-      }
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            // 这里写AXIOS 请求， 传修改后的信息
-            var params = new URLSearchParams()
-            params.append('nicheng', this.ruleForm.nicheng)
-            params.append('phone', this.ruleForm.phone)
-            params.append('email', this.ruleForm.email)
-            axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/changeinfo', params).then(res => {
-              console.log(res.data)
-              if (res.data.code === 0) {
-                alert('个人信息修改成功！')
-              } else {
-                alert('个人信息修改失败！')
-              }
-            }).catch(error => {
-              console.log(error)
-            })
-          } else {
-            alert("填入信息有误")
-          }
-        })
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields()
-      }
-    },
-    mounted() { // 个人信息
-      axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/getinfo').then(res => {
-        console.log('修改个人信息列表')
-        let jsonObj = JSON.parse(JSON.stringify(res.data))
-        this.ruleForm.nicheng = jsonObj.data.info.nicheng
-        this.ruleForm.email = jsonObj.data.info.email
-        this.ruleForm.phone = jsonObj.data.info.phone
-      }).catch(error => {
-        console.log(error)
-      })
     }
+    var validate_phone = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入电话'))
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
+        }
+        callback()
+      }
+    }
+    var validate_birthday = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入生日'))
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
+        }
+        callback()
+      }
+    }
+    var validate_gender = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入性别'))
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
+        }
+        callback()
+      }
+    }
+    var validate_des = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入简介'))
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
+        }
+        callback()
+      }
+    }
+    return {
+      ruleForm: {
+        real_name: '',
+        phone: '',
+        birthday: '',
+        description: '',
+        gender: '男'
+      },
+      rules: {
+        real_name: [
+          {validator: validate_real_name, trigger: 'blur'}
+        ],
+        phone: [
+          {validator: validate_phone, trigger: 'blur'}
+        ],
+        birthday: [
+          {validator: validate_birthday, trigger: 'blur'}
+        ],
+        description: [
+          {validator: validate_des, trigger: 'blur'}
+        ],
+        gender: [
+          {validator: validate_gender, trigger: 'blur'}
+        ]
+      }
+    }
+  },
+  methods: {
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          // 这里写AXIOS 请求， 传修改后的信息
+          var params = new URLSearchParams()
+          params.append('nicheng', this.ruleForm.nicheng)
+          params.append('phone', this.ruleForm.phone)
+          params.append('email', this.ruleForm.email)
+          axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/changeinfo', params).then(res => {
+            console.log(res.data)
+            if (res.data.code === 0) {
+              alert('个人信息修改成功！')
+            } else {
+              alert('个人信息修改失败！')
+            }
+          }).catch(error => {
+            console.log(error)
+          })
+        } else {
+          alert('填入信息有误')
+        }
+      })
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
+    }
+  },
+  mounted () { // 个人信息
+    axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/getinfo').then(res => {
+      console.log('修改个人信息列表')
+      let jsonObj = JSON.parse(JSON.stringify(res.data))
+      this.ruleForm.nicheng = jsonObj.data.info.nicheng
+      this.ruleForm.email = jsonObj.data.info.email
+      this.ruleForm.phone = jsonObj.data.info.phone
+    }).catch(error => {
+      console.log(error)
+    })
   }
+}
 </script>
