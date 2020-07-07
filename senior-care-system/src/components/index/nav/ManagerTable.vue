@@ -56,6 +56,47 @@
       label="性别"
       prop="SEX">
     </el-table-column>
+    <!--    操作按钮-->
+    <el-table-column
+      fixed="right"
+      label="操作"
+      width="100"
+    >
+      <template slot-scope="scope">
+        <el-popover
+          placement="left"
+          width="600"
+        >
+          <!--          老人信息编辑-->
+          <div>
+            <el-form :model="editForm" status-icon :rules="editRules" ref="editForm" label-width="100px"
+                     class="demo-ruleForm">
+              <el-form-item label="真实姓名" prop="username">
+                <el-col :span="5">
+                  <el-input v-model="editForm.username"></el-input>
+                </el-col>
+              </el-form-item>
+              <el-form-item label="性别" prop="gender">
+                <el-radio v-model="editForm.gender" label="男"></el-radio>
+                <el-radio v-model="editForm.gender" label="女"></el-radio>
+              </el-form-item>
+              <el-form-item label="电话" prop="phone">
+                <el-col :span="15">
+                  <el-input v-model="editForm.phone"></el-input>
+                </el-col>
+              </el-form-item>
+            </el-form>
+            <div class="editButtons">
+              <el-button type="primary" @click="submit(scope.row.ID,'editForm')">保存修改</el-button>
+              <el-button type="primary" @click="cancel('editForm')">重置</el-button>
+            </div>
+          </div>
+          <el-button type="primary" slot="reference">
+            <i class="el-icon-edit"></i>
+          </el-button>
+        </el-popover>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
@@ -64,6 +105,25 @@ export default {
   name: 'StaffTable',
   data () {
     return {
+      // 编辑框变量
+      editForm: {
+        username: '',
+        gender: '男',
+        phone: ''
+      },
+      // 校验规则
+      editRules: {
+        username: [
+          {required: true, message: '请输入姓名', trigger: 'blur'},
+          {min: 2, max: 4, message: '长度在 2 到 4 个字符', trigger: 'blur'}
+        ],
+        gender: [
+          {required: true, message: '请输入性别', trigger: 'blur'}
+        ],
+        phone: [
+          {required: true, message: '请输入电话', trigger: 'blur'}
+        ]
+      },
       tableData: [{
         ID: '1',
         ORG_ID: '',
@@ -141,6 +201,38 @@ export default {
         jsonauth: ''
       }]
     }
+  },
+  methods: {
+    cancel (formName) {
+      // this.visible = false
+      // console.log(this.visible)
+      this.$refs[formName].resetFields();
+    },
+    submit (ID, formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          let _this = this;
+          let params = new URLSearchParams();
+          params.append('id', Number(ID));
+          params.append('username', _this.editForm.username);
+          params.append('phone', _this.editForm.phone);
+          if (_this.editForm.gender === '男')
+            params.append('gender', 1)
+          else params.append('gender', 0);
+          _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/update-info', params).then(res => {
+            console.log(res);
+            if (res.data.code === 0) {
+              alert('修改成功')
+              // _this.visible = false
+            } else
+              alert('修改失败')
+          })
+        } else {
+          alert('请确认所有项目填写完整')
+          return false;
+        }
+      });
+    },
   }
 }
 </script>

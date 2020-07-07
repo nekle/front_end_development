@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 1700px;height: 800px">
+  <div style="width: 1925px;height: 800px">
     <el-container>
       <div class="align left">
         <left />
