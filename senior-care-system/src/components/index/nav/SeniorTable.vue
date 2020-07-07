@@ -124,16 +124,19 @@
 
 export default {
   name: 'SeniorTable',
+
   data () {
     return {
       // 弹出修改框是否可见
       // visible: false,
+
       // 编辑框变量
       editForm: {
         username: '',
         gender: '男',
         phone: ''
       },
+
       // 校验规则
       editRules: {
         username: [
@@ -147,6 +150,7 @@ export default {
           {required: true, message: '请输入电话', trigger: 'blur'}
         ]
       },
+
       // 读取的数据
       tableData: [{
         ID: '1',
@@ -266,11 +270,13 @@ export default {
     editBox () {
       this.$prompt('')
     },
+
     cancel (formName) {
       // this.visible = false
       // console.log(this.visible)
       this.$refs[formName].resetFields();
     },
+
     submit (ID, formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -279,9 +285,13 @@ export default {
           params.append('id', Number(ID));
           params.append('username', _this.editForm.username);
           params.append('phone', _this.editForm.phone);
-          if (_this.editForm.gender === '男')
-            params.append('gender', 1)
-          else params.append('gender', 0);
+
+          if (_this.editForm.gender === '男') {
+            params.append('gender', 1);
+          } else {
+            params.append('gender', 0);
+          }
+
           _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/update-info', params).then(res => {
             console.log(res);
             if (res.data.code === 0) {
@@ -290,6 +300,7 @@ export default {
             } else
               alert('修改失败')
           })
+
         } else {
           alert('请确认所有项目填写完整')
           return false;

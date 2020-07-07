@@ -28,12 +28,15 @@ export default {
     }
   },
   methods: {
+
     //  绘制图片（拍照功能）
     setImage () {
+
       var _this = this;
       _this.thisCanvas = document.getElementById('canvasCamera');
       _this.thisContext = this.thisCanvas.getContext('2d');
       // canvas画图
+
       _this.thisContext.drawImage(
         _this.thisVideo,
         0,
@@ -41,16 +44,21 @@ export default {
         _this.videoWidth,
         _this.videoHeight
       );
+
       // 获取图片base64链接
       console.log(this.thisCanvas.toDataURL('image/png'))
       var image = this.thisCanvas.toDataURL('image/png');
       console.log('url:' + image)
       _this.imgSrc = image;//赋值并预览图片
+
     }
   }
   ,
+
   mounted () {
+
     this.thisVideo = document.getElementById('videoCamera')
+    
     // console.log('this is current player instance object', this.player)
     setTimeout(() => {
       navigator.mediaDevices.getUserMedia({

@@ -37,7 +37,9 @@ import axios from 'axios'
 
 export default {
   name: 'editInfo',
+
   data () {
+
     var validate_real_name = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入真实姓名'))
@@ -48,6 +50,7 @@ export default {
         callback()
       }
     }
+
     var validate_phone = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入电话'))
@@ -58,6 +61,7 @@ export default {
         callback()
       }
     }
+
     var validate_birthday = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入生日'))
@@ -68,6 +72,7 @@ export default {
         callback()
       }
     }
+
     var validate_gender = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入性别'))
@@ -78,6 +83,7 @@ export default {
         callback()
       }
     }
+
     var validate_des = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入简介'))
@@ -88,7 +94,9 @@ export default {
         callback()
       }
     }
+
     return {
+
       ruleForm: {
         real_name: '',
         phone: '',
@@ -96,6 +104,7 @@ export default {
         description: '',
         gender: '男'
       },
+
       rules: {
         real_name: [
           {validator: validate_real_name, trigger: 'blur'}
@@ -113,9 +122,11 @@ export default {
           {validator: validate_gender, trigger: 'blur'}
         ]
       }
+
     }
   },
   methods: {
+
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -124,6 +135,7 @@ export default {
           params.append('nicheng', this.ruleForm.nicheng)
           params.append('phone', this.ruleForm.phone)
           params.append('email', this.ruleForm.email)
+
           axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/changeinfo', params).then(res => {
             console.log(res.data)
             if (res.data.code === 0) {
@@ -134,15 +146,19 @@ export default {
           }).catch(error => {
             console.log(error)
           })
+
         } else {
           alert('填入信息有误')
         }
+
       })
     },
+
     resetForm (formName) {
       this.$refs[formName].resetFields()
     }
   },
+
   mounted () { // 个人信息
     axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/getinfo').then(res => {
       console.log('修改个人信息列表')
@@ -154,5 +170,6 @@ export default {
       console.log(error)
     })
   }
+
 }
 </script>

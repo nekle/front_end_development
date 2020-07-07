@@ -200,9 +200,13 @@ export default {
           params.append('id', Number(ID));
           params.append('username', _this.editForm.username);
           params.append('phone', _this.editForm.phone);
-          if (_this.editForm.gender === '男')
-            params.append('gender', 1)
-          else params.append('gender', 0);
+
+          if (_this.editForm.gender === '男') {
+            params.append('gender', 1);
+          } else {
+            params.append('gender', 0);
+          }
+
           _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/employee-info/update-info', params).then(res => {
             console.log(res);
             if (res.data.code === 0) {
@@ -211,6 +215,7 @@ export default {
             } else
               alert('修改失败')
           })
+
         } else {
           alert('请确认所有项目填写完整')
           return false;

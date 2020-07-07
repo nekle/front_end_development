@@ -103,14 +103,17 @@
 <script>
 export default {
   name: 'StaffTable',
+
   data () {
     return {
+
       // 编辑框变量
       editForm: {
         username: '',
         gender: '男',
         phone: ''
       },
+
       // 校验规则
       editRules: {
         username: [
@@ -124,6 +127,7 @@ export default {
           {required: true, message: '请输入电话', trigger: 'blur'}
         ]
       },
+
       tableData: [{
         ID: '1',
         ORG_ID: '',
@@ -208,6 +212,7 @@ export default {
       // console.log(this.visible)
       this.$refs[formName].resetFields();
     },
+
     submit (ID, formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -216,6 +221,7 @@ export default {
           params.append('id', Number(ID));
           params.append('username', _this.editForm.username);
           params.append('phone', _this.editForm.phone);
+
           if (_this.editForm.gender === '男')
             params.append('gender', 1)
           else params.append('gender', 0);
@@ -227,6 +233,7 @@ export default {
             } else
               alert('修改失败')
           })
+
         } else {
           alert('请确认所有项目填写完整')
           return false;

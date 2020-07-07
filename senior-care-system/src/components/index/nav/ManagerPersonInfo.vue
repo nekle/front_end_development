@@ -40,7 +40,9 @@ import EditInfo from './editInfo';
 
 export default {
   name: 'managerPersonInfo',
+
   components: {EditInfo},
+
   data () {
     return {
       id: 1,
