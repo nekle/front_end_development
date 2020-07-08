@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axiso from 'axios'
+
 export default {
   name: 'EventInfo',
   data () {
@@ -23,26 +23,36 @@ export default {
   },
   methods: {
     drawLine (id) {
-      var params = new URLSearchParams()
+
+      let params = new URLSearchParams()
       params.append('date_type', 0)
       params.append('event_type', 1)
-      this.$axios.post('http://www.zhihuiyanglao.work:8099/home/home', params).then(res => {
-        console.log(res.data)
-        this.dataName = res.data.data.event_by_date[0].name
-        this.dataNameSolved = res.data.data.event_by_date[1].name
-        this.dataNameUnsolved = res.data.data.event_by_date[2].name
-        this.dateData = res.data.data.event_by_date[0].date
-        this.dataTotal = res.data.data.event_by_date[0].data
-        this.dataSolved = res.data.data.event_by_date[1].data
-        this.dataUnsolved = res.data.data.event_by_date[2].data
-        console.log(this.dateData)
+
+      this.$axios.post('http://' + this.$ip + ':' + this.$port + '/home/home', params).then(res => {
+
+        console.log('事件统计');
+        console.log(res.data.data);
+        console.log(res.data.data.event_by_date[0]);
+
+        this.dataName = res.data.data.event_by_date[0].name;
+        this.dataNameSolved = res.data.data.event_by_date[1].name;
+        this.dataNameUnsolved = res.data.data.event_by_date[2].name;
+        this.dateData = res.data.data.event_by_date[0].date;
+        this.dataTotal = res.data.data.event_by_date[0].data;
+        this.dataSolved = res.data.data.event_by_date[1].data;
+        this.dataUnsolved = res.data.data.event_by_date[2].data;
+
+        console.log(this.dateData);
+
       })
+
       let myChart = this.$echarts.init(document.getElementById(id))
+
       myChart.setOption({
-          title: {
-            text: '事件统计图'
-          },
-          tooltip: {
+        title: {
+          text: '事件统计图'
+        },
+        tooltip: {
             trigger: 'axis'
           },
           legend: {
@@ -88,9 +98,11 @@ export default {
       )
     }
   },
+
   mounted () {
     this.drawLine('overviewMain')
   }
+
 }
 </script>
 

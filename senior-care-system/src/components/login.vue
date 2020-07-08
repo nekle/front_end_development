@@ -76,7 +76,7 @@ export default {
     ...mapMutations(['changeLogin']),
     login () {
       let _this = this
-      var params = new URLSearchParams()
+      let params = new URLSearchParams()
       params.append('username', this.loginForm.username)
       params.append('password', this.loginForm.password)
       this.$cookies.set('account', this.loginForm.email)

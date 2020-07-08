@@ -3,22 +3,22 @@
     <div class="topDiv">
       <div class="avatarDiv">
         <el-avatar :size='100'
-                   :src="profile_photo">
+                   :src="avatarSrc">
           <!--          src="/static/imgs/bcg.jpg"-->
         </el-avatar>
       </div>
       <div class="managerIcon"><i class="el-icon-user-solid">管理员</i></div>
-      <span class="managerName">{{real_name}}</span>
+      <span class="managerName">{{managerData.real_name}}</span>
     </div>
     <el-divider></el-divider>
     <div class="detail">
-      <i class="el-icon-user-solid">性别:{{gender}}</i>
+      <i class="el-icon-user-solid">性别:{{managerData.gender}}</i>
     </div>
     <div class="detail">
-      <i class="el-icon-phone">电话:{{phone}}</i>
+      <i class="el-icon-phone">电话:{{managerData.phone}}</i>
     </div>
     <div class="detail">
-      <i class="el-icon-message">邮箱：{{email}}</i>
+      <i class="el-icon-message">出生日期：{{managerData.birthday}}</i>
     </div>
     <div class="editPerson">
       <el-popover
@@ -45,17 +45,52 @@ export default {
 
   data () {
     return {
-      id: 1,
-      username: 'admin',
-      real_name: '管理员',
-      gender: '男',
-      phone: '18811011699',
-      email: '2411178926@qq.com',
-      identity_card_id: '',
-      birthday: '',
-      profile_photo: '/static/imgs/bcg.jpg',
-      description: ''
+      avatarSrc: '/static/imgs/bcgD.jpg',
+      managerData: {
+        real_name: '',
+        phone: '',
+        identity_card_id: '',
+        birthday: '',
+        profile_photo: '',
+        description: '',
+        gender: ''
+      }
     }
+  },
+
+  methods: {
+
+    /*
+    * 获取管理员个人信息
+    * */
+    getManagerData () {
+      let _this = this;
+
+      _this.$axios.post('http://' + this.$ip + ':' + this.$port + '/user/sys-user-info/get-info').then(res => {
+
+        if (res.data.code == 0) {
+
+          _this.managerData = res.data.data;
+
+          if (_this.managerData.gender == 1) {
+            _this.managerData.gender = '男';
+          } else {
+            _this.managerData.gender = '女';
+          }
+
+        }
+
+      })
+    }
+
+  },
+
+  mounted () {
+    this.getManagerData();
+    this.$nextTick(() => {
+      setInterval(this.getManagerData, 600000);
+    })
+
   }
 }
 </script>

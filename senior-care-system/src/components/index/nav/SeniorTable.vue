@@ -61,7 +61,7 @@
     </el-table-column>
     <el-table-column
       label="ID"
-      prop="ID"
+      prop="id"
       :resizable="false">
     </el-table-column>
     <el-table-column
@@ -74,7 +74,7 @@
     </el-table-column>
     <el-table-column
       label="身份证"
-      prop="id_card">
+      prop="identity_card_id">
     </el-table-column>
     <!--    操作按钮-->
     <el-table-column
@@ -107,7 +107,7 @@
               </el-form-item>
             </el-form>
             <div class="editButtons">
-              <el-button type="primary" @click="submit(scope.row.ID,'editForm')">保存修改</el-button>
+              <el-button type="primary" @click="submit(scope.row.id,'editForm')">保存修改</el-button>
               <el-button type="primary" @click="cancel('editForm')">重置</el-button>
             </div>
           </div>
@@ -127,8 +127,6 @@ export default {
 
   data () {
     return {
-      // 弹出修改框是否可见
-      // visible: false,
 
       // 编辑框变量
       editForm: {
@@ -152,138 +150,176 @@ export default {
       },
 
       // 读取的数据
-      tableData: [{
-        ID: '1',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老李',
-        gender: '男',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        checkin_date: '2020-05-05',
-        checkout_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        room_number: '101',
-        firstguardian_name: '小李',
-        firstguardian_relationship: '父子',
-        firstguardian_phone: '123',
-        firstguardian_wechat: 'xiaoli',
-        secondguardian_name: '小张',
-        secondguardian_relationship: '父女',
-        secondguardian_phone: '123',
-        secondguardian_wechat: 'xiaozhang'
-      }, {
-        ID: '2',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老张',
-        gender: '女',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        checkin_date: '2020-05-05',
-        checkout_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        room_number: '101',
-        firstguardian_name: '小李',
-        firstguardian_relationship: '母子',
-        firstguardian_phone: '123',
-        firstguardian_wechat: 'xiaoli',
-        secondguardian_name: '小张',
-        secondguardian_relationship: '母女',
-        secondguardian_phone: '123',
-        secondguardian_wechat: 'xiaozhang'
-      }, {
-        ID: '3',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老陈',
-        gender: '男',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        checkin_date: '2020-05-05',
-        checkout_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        room_number: '101',
-        firstguardian_name: '小李',
-        firstguardian_relationship: '父子',
-        firstguardian_phone: '123',
-        firstguardian_wechat: 'xiaoli',
-        secondguardian_name: '小张',
-        secondguardian_relationship: '父女',
-        secondguardian_phone: '123',
-        secondguardian_wechat: 'xiaozhang'
-      }, {
-        ID: '3',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老吴',
-        gender: '男',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        checkin_date: '2020-05-05',
-        checkout_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        room_number: '101',
-        firstguardian_name: '小李',
-        firstguardian_relationship: '父子',
-        firstguardian_phone: '123',
-        firstguardian_wechat: 'xiaoli',
-        secondguardian_name: '小张',
-        secondguardian_relationship: '父女',
-        secondguardian_phone: '123',
-        secondguardian_wechat: 'xiaozhang'
-      },
-        {
-          ID: '4',
-          ORG_ID: '',
-          CLIENT_ID: '',
-          username: '老周',
-          gender: '男',
-          phone: '123456',
-          id_card: '123',
-          birthday: '1956-05-05',
-          checkin_date: '2020-05-05',
-          checkout_date: '2020-05-05',
-          imgset_dir: '',
-          profile_photo: '',
-          room_number: '101',
-          firstguardian_name: '小李',
-          firstguardian_relationship: '父子',
-          firstguardian_phone: '123',
-          firstguardian_wechat: 'xiaoli',
-          secondguardian_name: '小张',
-          secondguardian_relationship: '父女',
-          secondguardian_phone: '123',
-          secondguardian_wechat: 'xiaozhang'
-        }]
+      // tableData: [{
+      //   ID: '1',
+      //   ORG_ID: '',
+      //   CLIENT_ID: '',
+      //   username: '老李',
+      //   gender: '男',
+      //   phone: '123456',
+      //   id_card: '123',
+      //   birthday: '1956-05-05',
+      //   checkin_date: '2020-05-05',
+      //   checkout_date: '2020-05-05',
+      //   imgset_dir: '',
+      //   profile_photo: '',
+      //   room_number: '101',
+      //   firstguardian_name: '小李',
+      //   firstguardian_relationship: '父子',
+      //   firstguardian_phone: '123',
+      //   firstguardian_wechat: 'xiaoli',
+      //   secondguardian_name: '小张',
+      //   secondguardian_relationship: '父女',
+      //   secondguardian_phone: '123',
+      //   secondguardian_wechat: 'xiaozhang'
+      // }, {
+      //   ID: '2',
+      //   ORG_ID: '',
+      //   CLIENT_ID: '',
+      //   username: '老张',
+      //   gender: '女',
+      //   phone: '123456',
+      //   id_card: '123',
+      //   birthday: '1956-05-05',
+      //   checkin_date: '2020-05-05',
+      //   checkout_date: '2020-05-05',
+      //   imgset_dir: '',
+      //   profile_photo: '',
+      //   room_number: '101',
+      //   firstguardian_name: '小李',
+      //   firstguardian_relationship: '母子',
+      //   firstguardian_phone: '123',
+      //   firstguardian_wechat: 'xiaoli',
+      //   secondguardian_name: '小张',
+      //   secondguardian_relationship: '母女',
+      //   secondguardian_phone: '123',
+      //   secondguardian_wechat: 'xiaozhang'
+      // }, {
+      //   ID: '3',
+      //   ORG_ID: '',
+      //   CLIENT_ID: '',
+      //   username: '老陈',
+      //   gender: '男',
+      //   phone: '123456',
+      //   id_card: '123',
+      //   birthday: '1956-05-05',
+      //   checkin_date: '2020-05-05',
+      //   checkout_date: '2020-05-05',
+      //   imgset_dir: '',
+      //   profile_photo: '',
+      //   room_number: '101',
+      //   firstguardian_name: '小李',
+      //   firstguardian_relationship: '父子',
+      //   firstguardian_phone: '123',
+      //   firstguardian_wechat: 'xiaoli',
+      //   secondguardian_name: '小张',
+      //   secondguardian_relationship: '父女',
+      //   secondguardian_phone: '123',
+      //   secondguardian_wechat: 'xiaozhang'
+      // }, {
+      //   ID: '3',
+      //   ORG_ID: '',
+      //   CLIENT_ID: '',
+      //   username: '老吴',
+      //   gender: '男',
+      //   phone: '123456',
+      //   id_card: '123',
+      //   birthday: '1956-05-05',
+      //   checkin_date: '2020-05-05',
+      //   checkout_date: '2020-05-05',
+      //   imgset_dir: '',
+      //   profile_photo: '',
+      //   room_number: '101',
+      //   firstguardian_name: '小李',
+      //   firstguardian_relationship: '父子',
+      //   firstguardian_phone: '123',
+      //   firstguardian_wechat: 'xiaoli',
+      //   secondguardian_name: '小张',
+      //   secondguardian_relationship: '父女',
+      //   secondguardian_phone: '123',
+      //   secondguardian_wechat: 'xiaozhang'
+      // },
+      //   {
+      //     ID: '4',
+      //     ORG_ID: '',
+      //     CLIENT_ID: '',
+      //     username: '老周',
+      //     gender: '男',
+      //     phone: '123456',
+      //     id_card: '123',
+      //     birthday: '1956-05-05',
+      //     checkin_date: '2020-05-05',
+      //     checkout_date: '2020-05-05',
+      //     imgset_dir: '',
+      //     profile_photo: '',
+      //     room_number: '101',
+      //     firstguardian_name: '小李',
+      //     firstguardian_relationship: '父子',
+      //     firstguardian_phone: '123',
+      //     firstguardian_wechat: 'xiaoli',
+      //     secondguardian_name: '小张',
+      //     secondguardian_relationship: '父女',
+      //     secondguardian_phone: '123',
+      //     secondguardian_wechat: 'xiaozhang'
+      //   }]
+
+      //请求到的老人数据
+      tableData: [],
     }
   },
   methods: {
-    editBox () {
-      this.$prompt('')
+
+    /*
+    * 获取所有老人信息
+    * */
+    getOldInfo () {
+
+      let _this = this;
+
+      _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/list-info').then(res => {
+
+        _this.tableData = res.data.data;
+
+        for (let data in _this.tableData) {
+
+          if (data.gender == 1) {
+            data.gender = '男';
+          }
+
+        }
+
+      }).catch(error => {
+
+          console.log(error)
+
+        }
+      );
+
     },
 
+    /*
+    * 重置修改表格
+    * @params [String] formName 表单的名字
+    * */
     cancel (formName) {
       // this.visible = false
       // console.log(this.visible)
       this.$refs[formName].resetFields();
     },
 
+    /*
+    * 提交修改的信息
+    * @params [String] ID 老人的ID
+    * @params [String] formName 表单的名字
+    * */
     submit (ID, formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let _this = this;
           let params = new URLSearchParams();
+
           params.append('id', Number(ID));
-          params.append('username', _this.editForm.username);
+          params.append('username', String(_this.editForm.username));
           params.append('phone', _this.editForm.phone);
 
           if (_this.editForm.gender === '男') {
@@ -293,7 +329,9 @@ export default {
           }
 
           _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/update-info', params).then(res => {
-            console.log(res);
+
+            // console.log(res);
+
             if (res.data.code === 0) {
               alert('修改成功')
               // _this.visible = false
@@ -308,6 +346,15 @@ export default {
       });
     },
     // 获取老人信息
+
+  },
+
+  mounted () {
+    this.getOldInfo();
+
+    this.$nextTick(() => {
+      setInterval(this.getOldInfo, 10000)
+    })
 
   }
 }

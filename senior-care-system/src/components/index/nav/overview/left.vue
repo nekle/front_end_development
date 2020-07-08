@@ -9,7 +9,7 @@
         <el-image src="/static/imgs/oldWoman.png">
         </el-image>
       </div>
-      <span>{{this.employee_man}} 人</span>
+      <span>{{this.oldMan_man}} 人</span>
     </div>
 
     <div>
@@ -54,11 +54,15 @@ export default {
   },
   methods: {
     getPeople () {
+
       var params = new URLSearchParams()
       params.append('date_type', 0)
       params.append('event_type', 1)
-      this.$axios.post('http://www.zhihuiyanglao.work:8099/home/home', params).then(res => {
-        // console.log(res)
+
+      this.$axios.post('http://' + this.$ip + ':' + this.$port + '/home/home', params).then(res => {
+
+        console.log(res)
+
         this.oldMan = res.data.data.pepple_sum.oldMan
         this.oldMan_man = res.data.data.pepple_sum.oldMan_man
         this.oldMan_woman = res.data.data.pepple_sum.oldMan_woman
@@ -69,6 +73,7 @@ export default {
         this.volunteer = res.data.data.pepple_sum.volunteer
         this.volunteer_man = res.data.data.pepple_sum.volunteer_man
         this.volunteer_woman = res.data.data.pepple_sum.volunteer_woman
+
         //将数据存储到session
         sessionStorage.setItem('oldMan', res.data.data.pepple_sum.oldMan)
         sessionStorage.setItem('oldMan_man', res.data.data.pepple_sum.oldMan_man)
@@ -81,13 +86,17 @@ export default {
         sessionStorage.setItem('volunteer_man', res.data.data.pepple_sum.volunteer_man)
         sessionStorage.setItem('volunteer_woman', res.data.data.pepple_sum.volunteer_woman)
         // console.log('employee: '+sessionStorage.getItem('employee'))
+
       })
     }
   },
   mounted () {
+
+    this.getPeople();
     this.$nextTick(() => {
       setInterval(this.getPeople, 100000)
     })
+
   }
 }
 </script>

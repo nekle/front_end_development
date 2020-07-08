@@ -2,27 +2,33 @@
   <div>
     <div class="videoWatch">
       <h1>视频监控</h1>
-      <div style="text-align: left;padding-left: 20px">
-        <span>老人行为监控</span>
-      </div>
-      <div style="text-align: left;padding-left: 20px">
+      <div class="timeDisplay">
         <span style="font:24px/30px 'Microsoft YaHei';color: gray">时间 2020/7/1</span>
       </div>
       <div class="inner">
-        <Camera />
+        <video-play />
+        <!--        <Camera />-->
+        <!--        <span @click="goPage('http://121.89.222.245/app_live_stream/')">视频监控</span>-->
       </div>
     </div>
   </div>
 </template>
 <script>
-import VideoStream from './VideoStream'
 import Camera from './Camera';
+import VideoPlay from './VideoPlay';
 
 export default {
   name: 'ActionWatcher',
   components: {
-    VideoStream,
-    Camera
+    Camera,
+    VideoPlay
+  },
+  methods: {
+
+    goPage (url) {
+      window.location.href = url
+    }
+
   }
 }
 </script>
@@ -42,4 +48,9 @@ export default {
     height: 100%;
     margin: 20px 20px;
   }
+
+  .timeDisplay {
+
+  }
+
 </style>

@@ -160,12 +160,13 @@ export default {
   },
 
   mounted () { // 个人信息
-    axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/getinfo').then(res => {
-      console.log('修改个人信息列表')
-      let jsonObj = JSON.parse(JSON.stringify(res.data))
-      this.ruleForm.nicheng = jsonObj.data.info.nicheng
-      this.ruleForm.email = jsonObj.data.info.email
-      this.ruleForm.phone = jsonObj.data.info.phone
+    axios.post('http://' + this.$ip + ':' + this.$port + '/user/sys-user-info/get-info').then(res => {
+
+      let jsonObj = JSON.parse(JSON.stringify(res.data));
+
+      this.ruleForm.real_name = jsonObj.data.real_name;
+      this.ruleForm.phone = jsonObj.data.phone;
+
     }).catch(error => {
       console.log(error)
     })

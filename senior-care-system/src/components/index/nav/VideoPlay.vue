@@ -25,33 +25,74 @@ export default {
   data () {
     return {
       thisVideo: null,
+
       // videojs options
       playerOptions: {
-        height: '360',
+        height: '500',
         autoplay: false,
         muted: true,
-        language: 'en',
+        loop: false,
         playbackRates: [0.7, 1.0, 1.5, 2.0],
-        sources: [{
-          // type:'application/x-mpegURL',
-          type: 'video/mp4',
-          // mp4
-          src: 'http://vjs.zencdn.net/v/oceans.mp4'
-          // src:'http://21810.liveplay.myqcloud.com/live/21810_ea70a9e139.m3u8'
-          // webm
-          // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-        }],
-        poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg'
+        preload: 'auto',
+        language: 'zh-CN',
+        sourceOrder: true,
+        techOrder: ['flash', 'html5'],//设置顺序，
+        flash: {hls: {withCredentials: false}},//可以使用rtmp视频
+        html5: {hls: {withCredentials: false}},//可以使用m3u8视频
+        fluid: true,
+
+
+        sources: [
+
+          {
+            // type:'application/x-mpegURL',
+            // type: 'application/x-mpegURL',
+            // src: 'http://121.89.222.245/live/test.m3u8',
+            // type:'rtmp/flv',
+            // src: 'rtmp://121.89.222.245:1936/live/test',
+            type: 'rtmp/flv',
+            src: 'rtmp://121.89.222.245:1936/live/test'
+
+            // mp4
+            // type:'video/mp4',
+            // src:'http://21810.liveplay.myqcloud.com/live/21810_ea70a9e139.m3u8'
+            // webm
+            // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+          },
+
+          {
+            type: 'video/mp4',
+            src: 'http://121.89.222.245/live/test.m3u8' //你的m3u8地址（必填
+          }
+
+        ],
+
+        poster: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1369956605,3691802044&fm=26&gp=0.jpg',
+        //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+        notSupportedMessage: '此视频暂无法播放，请稍后再试',
+
+        controlBar: {
+          timeDivider: true,
+          durationDisplay: true,
+          remainingTimeDisplay: false,
+          //全屏按钮
+          fullscreenToggle: true
+        }
+
       }
+
     }
   },
+
   mounted () {
   },
+
   computed: {
     player () {
       return this.$refs.videoPlayer.player
     }
   },
+
   methods: {
     // listen event
     onPlayerPlay (player) {
@@ -93,9 +134,16 @@ export default {
       // console.log('example 01: the player is readied', player)
     }
   }
+
 }
 </script>
 <style>
+
+  .player {
+    width: 900px;
+    height: 550px;
+    margin: 0 auto;
+  }
 
   .vjs-custom-skin > .video-js {
     width: 100%;
