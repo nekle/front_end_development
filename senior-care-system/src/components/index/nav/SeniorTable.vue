@@ -33,28 +33,28 @@
             <span>{{ props.row.room_number }}</span>
           </el-form-item>
           <el-form-item label="第一监护人">
-            <span>{{ props.row.firstguardian_name }}</span>
+            <span>{{ props.row.guardianList[0].guardianInfo.name}}</span>
           </el-form-item>
           <el-form-item label="与第一监护人关系">
-            <span>{{ props.row.firstguardian_relationship }}</span>
+            <span>{{ props.row.guardianList[0].relation }}</span>
           </el-form-item>
           <el-form-item label="第一监护人电话">
-            <span>{{ props.row.firstguardian_phone }}</span>
+            <span>{{ props.row.guardianList[0].guardianInfo.phone }}</span>
           </el-form-item>
           <el-form-item label="第一监护人微信">
-            <span>{{ props.row.firstguardian_wechat }}</span>
+            <span>{{ props.row.guardianList[0].guardianInfo.wechat_openid}}</span>
           </el-form-item>
           <el-form-item label="第二监护人">
-            <span>{{ props.row.secondguardian_name }}</span>
+            <span>{{ props.row.guardianList[1].guardianInfo.name }}</span>
           </el-form-item>
           <el-form-item label="与第二监护人关系">
-            <span>{{ props.row.secondguardian_relationship }}</span>
+            <span>{{ props.row.guardianList[1].relation }}</span>
           </el-form-item>
           <el-form-item label="第二监护人电话">
-            <span>{{ props.row.secondguardian_phone }}</span>
+            <span>{{ props.row.guardianList[1].guardianInfo.phone }}</span>
           </el-form-item>
           <el-form-item label="第二监护人微信">
-            <span>{{ props.row.secondguardian_wechat }}</span>
+            <span>{{ props.row.guardianList[1].guardianInfo.wechat_openid }}</span>
           </el-form-item>
         </el-form>
       </template>
@@ -62,7 +62,9 @@
     <el-table-column
       label="ID"
       prop="id"
-      :resizable="false">
+      :resizable="false"
+      :sortable="true"
+    >
     </el-table-column>
     <el-table-column
       label="老人姓名"
@@ -137,16 +139,20 @@ export default {
 
       // 校验规则
       editRules: {
+
         username: [
           {required: true, message: '请输入姓名', trigger: 'blur'},
           {min: 2, max: 4, message: '长度在 2 到 4 个字符', trigger: 'blur'}
         ],
+
         gender: [
           {required: true, message: '请输入性别', trigger: 'blur'}
         ],
+
         phone: [
           {required: true, message: '请输入电话', trigger: 'blur'}
         ]
+
       },
 
       // 读取的数据
@@ -279,13 +285,12 @@ export default {
       _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/list-info').then(res => {
 
         _this.tableData = res.data.data;
-
-        for (let data in _this.tableData) {
-
-          if (data.gender == 1) {
-            data.gender = '男';
+        // console.log(_this.tableData);
+        for (let i = 0; i <= _this.tableData.length; i++) {
+          // console.log(_this.tableData[i].gender);
+          if (_this.tableData[i].gender == 1) {
+            _this.tableData[i].gender = '男';
           }
-
         }
 
       }).catch(error => {
