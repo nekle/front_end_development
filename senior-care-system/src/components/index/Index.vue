@@ -26,7 +26,8 @@
       </el-header>
       <el-container direction="horizontal" style="height: 840px;backgroundColor: rgba(217, 236, 255, .3)">
         <el-tabs tab-position="left"
-                 style="font: 30px/1.7 'Helvetica Neue'" type="card">
+                 style="font: 30px/1.7 'Helvetica Neue'" type="card"
+                 v-model="activeName">
           <el-tab-pane label="概览" name="overview">
             <overview />
           </el-tab-pane>
@@ -37,6 +38,9 @@
             <el-container v-loading="loading">
               <statistics />
             </el-container>
+          </el-tab-pane>
+          <el-tab-pane label="事件列表" name="eventList">
+            <EventList />
           </el-tab-pane>
           <el-tab-pane label="老人信息" name="oldInfo">
             <SeniorTable />
@@ -66,23 +70,31 @@ import VolunteerTable from './nav/VolunteerTable'
 import ManagerTable from './nav/ManagerTable'
 import ManagerPersonInfo from './nav/ManagerPersonInfo'
 import Overview from './nav/overview/Overview';
+import EventList from './nav/EventList';
 
 export default {
   name: 'Index',
   data () {
     return {
+      activeName: 'overview',
+
       loading: true,
+
       props: {
         active: {
           type: String,
           required: true
         }
       },
+
       drawer: false,
       direction: 'rtl'
     }
+
   },
+
   components: {
+    EventList,
     Overview,
     ManagerPersonInfo,
     SeniorInfo,
@@ -93,28 +105,36 @@ export default {
     VolunteerTable,
     ManagerTable
   },
+
   methods: {
+
     handleSelect (key, keyPath) {
       this.$emit('update:active', key)
     },
+
     refresh () {
       this.loading = false
     },
+
     goBack () {
       this.$router.push('/')
     },
+
     open () { // 新事件提醒
-      this.$notify.warning({
+      this.$notify({
         title: '新事件发生',
         message: '您有新事件待处理',
-        showClose: false
+        showClose: false,
+        // duration:0,
+        type: 'warning'
       })
     }
+
   },
   mounted () {
     this.$nextTick(() => {
       setInterval(this.refresh, 2500)
-      setInterval(this.open, 10000)
+      setInterval(this.open, 60000)
     })
   }
 }
