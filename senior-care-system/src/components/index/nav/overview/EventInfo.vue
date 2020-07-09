@@ -30,19 +30,20 @@ export default {
 
       this.$axios.post('http://' + this.$ip + ':' + this.$port + '/home/home', params).then(res => {
 
-        console.log('事件统计');
-        console.log(res.data.data);
-        console.log(res.data.data.event_by_date[0]);
+        if (res.data.code === 0) {
+          this.dataName = res.data.data.event_by_date[0].name;
+          this.dataNameSolved = res.data.data.event_by_date[1].name;
+          this.dataNameUnsolved = res.data.data.event_by_date[2].name;
+          this.dateData = res.data.data.event_by_date[0].date;
+          this.dataTotal = res.data.data.event_by_date[0].data;
+          this.dataSolved = res.data.data.event_by_date[1].data;
+          this.dataUnsolved = res.data.data.event_by_date[2].data;
 
-        this.dataName = res.data.data.event_by_date[0].name;
-        this.dataNameSolved = res.data.data.event_by_date[1].name;
-        this.dataNameUnsolved = res.data.data.event_by_date[2].name;
-        this.dateData = res.data.data.event_by_date[0].date;
-        this.dataTotal = res.data.data.event_by_date[0].data;
-        this.dataSolved = res.data.data.event_by_date[1].data;
-        this.dataUnsolved = res.data.data.event_by_date[2].data;
+          console.log(this.dateData);
+        } else {
+          console.log('获取事件失败')
+        }
 
-        console.log(this.dateData);
 
       })
 
@@ -53,16 +54,16 @@ export default {
           text: '事件统计图'
         },
         tooltip: {
-            trigger: 'axis'
-          },
-          legend: {
-            data: [this.dataName, this.dataNameSolved, this.dataNameUnsolved]
-          },
-          grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+          trigger: 'axis'
+        },
+        legend: {
+          data: [this.dataName, this.dataNameSolved, this.dataNameUnsolved]
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
           },
           toolbox: {
             feature: {

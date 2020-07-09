@@ -6,7 +6,7 @@
         <span>入住老人人数 {{this.oldMan}} 人</span>
       </div>
       <div class="avatar">
-        <el-image src="/static/imgs/oldWoman.png">
+        <el-image src="../static/imgs/oldWoman.png">
         </el-image>
       </div>
       <span>{{this.oldMan_man}} 人</span>
@@ -14,7 +14,7 @@
 
     <div>
       <div class="avatar">
-        <el-image src="/static/imgs/oldMan.png">
+        <el-image src="../static/imgs/oldMan.png">
         </el-image>
       </div>
       <span>{{this.oldMan_woman}} 人</span>
@@ -24,11 +24,11 @@
         <span>监护人人数 {{this.guardian}} 人</span>
       </div>
       <div class="avatar">
-        <el-image src="/static/imgs/guardianWoman.png">
+        <el-image src="../static/imgs/guardianWoman.png">
         </el-image>
       </div>
       <div class="avatar">
-        <el-image src="/static/imgs/guardianMan.png">
+        <el-image src="../static/imgs/guardianMan.png">
         </el-image>
       </div>
     </div>
@@ -62,30 +62,33 @@ export default {
       this.$axios.post('http://' + this.$ip + ':' + this.$port + '/home/home', params).then(res => {
 
         console.log(res)
+        if (res.data.code === 0) {
+          this.oldMan = res.data.data.pepple_sum.oldMan
+          this.oldMan_man = res.data.data.pepple_sum.oldMan_man
+          this.oldMan_woman = res.data.data.pepple_sum.oldMan_woman
+          this.guardian = res.data.data.pepple_sum.guardian
+          this.employee = res.data.data.pepple_sum.employee
+          this.employee_man = res.data.data.pepple_sum.employee_man
+          this.employee_woman = res.data.data.pepple_sum.employee_woman
+          this.volunteer = res.data.data.pepple_sum.volunteer
+          this.volunteer_man = res.data.data.pepple_sum.volunteer_man
+          this.volunteer_woman = res.data.data.pepple_sum.volunteer_woman
 
-        this.oldMan = res.data.data.pepple_sum.oldMan
-        this.oldMan_man = res.data.data.pepple_sum.oldMan_man
-        this.oldMan_woman = res.data.data.pepple_sum.oldMan_woman
-        this.guardian = res.data.data.pepple_sum.guardian
-        this.employee = res.data.data.pepple_sum.employee
-        this.employee_man = res.data.data.pepple_sum.employee_man
-        this.employee_woman = res.data.data.pepple_sum.employee_woman
-        this.volunteer = res.data.data.pepple_sum.volunteer
-        this.volunteer_man = res.data.data.pepple_sum.volunteer_man
-        this.volunteer_woman = res.data.data.pepple_sum.volunteer_woman
-
-        //将数据存储到session
-        sessionStorage.setItem('oldMan', res.data.data.pepple_sum.oldMan)
-        sessionStorage.setItem('oldMan_man', res.data.data.pepple_sum.oldMan_man)
-        sessionStorage.setItem('oldMan_woman', res.data.data.pepple_sum.oldMan_woman)
-        sessionStorage.setItem('guardian', res.data.data.pepple_sum.guardian)
-        sessionStorage.setItem('employee', res.data.data.pepple_sum.employee)
-        sessionStorage.setItem('employee_man', res.data.data.pepple_sum.employee_man)
-        sessionStorage.setItem('employee_woman', res.data.data.pepple_sum.employee_woman)
-        sessionStorage.setItem('volunteer', res.data.data.pepple_sum.volunteer)
-        sessionStorage.setItem('volunteer_man', res.data.data.pepple_sum.volunteer_man)
-        sessionStorage.setItem('volunteer_woman', res.data.data.pepple_sum.volunteer_woman)
-        // console.log('employee: '+sessionStorage.getItem('employee'))
+          //将数据存储到session
+          sessionStorage.setItem('oldMan', res.data.data.pepple_sum.oldMan)
+          sessionStorage.setItem('oldMan_man', res.data.data.pepple_sum.oldMan_man)
+          sessionStorage.setItem('oldMan_woman', res.data.data.pepple_sum.oldMan_woman)
+          sessionStorage.setItem('guardian', res.data.data.pepple_sum.guardian)
+          sessionStorage.setItem('employee', res.data.data.pepple_sum.employee)
+          sessionStorage.setItem('employee_man', res.data.data.pepple_sum.employee_man)
+          sessionStorage.setItem('employee_woman', res.data.data.pepple_sum.employee_woman)
+          sessionStorage.setItem('volunteer', res.data.data.pepple_sum.volunteer)
+          sessionStorage.setItem('volunteer_man', res.data.data.pepple_sum.volunteer_man)
+          sessionStorage.setItem('volunteer_woman', res.data.data.pepple_sum.volunteer_woman)
+          // console.log('employee: '+sessionStorage.getItem('employee'))
+        } else {
+          console.log('获取失败')
+        }
 
       })
     }

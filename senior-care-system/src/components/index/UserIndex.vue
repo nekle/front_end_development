@@ -3,7 +3,7 @@
     <el-container direction="vertical">
       <el-header class="infoBar" height="120">
         <div class="topLogo">
-          <el-image src="/static/imgs/logo.jpg">
+          <el-image src="../static/imgs/logo.jpg">
           </el-image>
         </div>
         <div class="topInfo">
@@ -12,7 +12,7 @@
           <el-button @click="drawer = true" type="primary"
                      style="margin-left: 16px;background-color: transparent;border: 0">
             <el-avatar :size="60"
-                       src="/static/imgs/bcg.jpg">
+                       src="../static/imgs/bcg.jpg">
             </el-avatar>
           </el-button>
           <el-drawer

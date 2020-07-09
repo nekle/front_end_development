@@ -109,17 +109,30 @@ export default {
       _this.$axios.post('http://' + this.$ip + ':' + this.$port + '/event/list-no-finish', params).then(response => {
 
         console.log(response);
-        _this.eventList = response.data.data.event_list;
-        // console.log('如下')
-        // console.log(_this.eventList);
+
+        if (response.data.code === 0) {
+
+          _this.eventList = response.data.data.event_list;
+          // console.log('如下')
+          // console.log(_this.eventList);
+
+        } else {
+          console.log('获取未完成事件详情失败')
+        }
+
       })
 
       _this.$axios.post('http://' + this.$ip + ':' + this.$port + '/event/list-finish', params).then(response => {
 
-        console.log(response);
-        _this.finishedList = response.data.data.event_list;
-        console.log('如下')
-        console.log(_this.finishedList);
+        if (response.data.code === 0) {
+          console.log(response);
+          _this.finishedList = response.data.data.event_list;
+          console.log('如下')
+          console.log(_this.finishedList);
+        } else {
+          console.log('获取完成事件失败')
+        }
+
       })
 
     }
@@ -127,7 +140,7 @@ export default {
   },
 
   mounted () {
-    console.log('获取事件')
+    // console.log('获取事件')
     this.getEventList();
   }
 }

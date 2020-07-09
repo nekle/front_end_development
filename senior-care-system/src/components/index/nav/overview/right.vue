@@ -6,14 +6,14 @@
         <span>护工人数 {{employee}} 人</span>
       </div>
       <div class="avatar">
-        <el-image src="/static/imgs/employerWoman.png">
+        <el-image src="../static/imgs/employerWoman.png">
         </el-image>
       </div>
       <span>{{employee_woman}} 人</span>
     </div>
     <div>
       <div class="avatar">
-        <el-image src="/static/imgs/employerMan.png">
+        <el-image src="../static/imgs/employerMan.png">
         </el-image>
       </div>
       <span>{{employee_man}} 人</span>
@@ -23,14 +23,14 @@
         <span>义工人数 {{volunteer}} 人</span>
       </div>
       <div class="avatar">
-        <el-image src="/static/imgs/volunteerWoman.png">
+        <el-image src="../static/imgs/volunteerWoman.png">
         </el-image>
       </div>
       <span>{{volunteer_woman}} 人</span>
     </div>
     <div>
       <div class="avatar">
-        <el-image src="/static/imgs/volunteerMan.png">
+        <el-image src="../static/imgs/volunteerMan.png">
         </el-image>
       </div>
       <span>{{volunteer_man}} 人</span>

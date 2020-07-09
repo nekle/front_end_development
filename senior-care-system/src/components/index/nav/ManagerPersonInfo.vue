@@ -45,7 +45,7 @@ export default {
 
   data () {
     return {
-      avatarSrc: '/static/imgs/bcgD.jpg',
+      avatarSrc: '../static/imgs/bcgD.jpg',
       managerData: {
         real_name: '',
         phone: '',

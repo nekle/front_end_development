@@ -6,10 +6,9 @@
         <span style="font:24px/30px 'Microsoft YaHei';color: gray">时间 2020/7/1</span>
       </div>
       <div class="inner">
-<!--        <watch-stream/>-->
         <video-play />
         <!--        <Camera />-->
-        <!--        <span @click="goPage('http://121.89.222.245/app_live_stream/')">视频监控</span>-->
+          <!--        获取电脑摄像头-->
       </div>
     </div>
   </div>
@@ -18,6 +17,7 @@
 import Camera from './Camera';
 import VideoPlay from './VideoPlay';
 import WatchStream from './WatchStream';
+
 export default {
   name: 'ActionWatcher',
   components: {
