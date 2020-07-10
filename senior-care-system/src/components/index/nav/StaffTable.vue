@@ -17,7 +17,7 @@
             <span>{{ props.row.phone }}</span>
           </el-form-item>
           <el-form-item label="身份证">
-            <span>{{ props.row.id_card }}</span>
+            <span>{{ props.row.identity_card_id }}</span>
           </el-form-item>
           <el-form-item label="出生日期">
             <span>{{ props.row.birthday }}</span>
@@ -29,10 +29,7 @@
             <span>{{ props.row.resign_date }}</span>
           </el-form-item>
           <el-form-item label="描述">
-            <span>{{ props.row.DESCRIPTION }}</span>
-          </el-form-item>
-          <el-form-item label="是否在职">
-            <span>{{ props.row.ISACTIVE }}</span>
+            <span>{{ props.row.description }}</span>
           </el-form-item>
         </el-form>
       </template>
@@ -52,7 +49,7 @@
     </el-table-column>
     <el-table-column
       label="身份证"
-      prop="id_card">
+      prop="identity_card_id">
     </el-table-column>
     <!--    操作按钮-->
     <el-table-column
@@ -104,12 +101,14 @@ export default {
   name: 'StaffTable',
   data () {
     return {
+
       // 编辑框变量
       editForm: {
         username: '',
         gender: '男',
         phone: ''
       },
+
       // 校验规则
       editRules: {
         username: [
@@ -123,75 +122,19 @@ export default {
           {required: true, message: '请输入电话', trigger: 'blur'}
         ]
       },
-      tableData: [{
-        id: '1',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老李',
-        gender: '男',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        hire_date: '2020-05-05',
-        resign_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        DESCRIPTION: '十佳员工',
-        ISACTIVE: '在职',
-        CREATED: '',
-        CREATEBY: '',
-        UPDATED: '',
-        UPDATEBY: '',
-        REMOVE: ''
-      }, {
-        id: '2',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老张',
-        gender: '男',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        hire_date: '2020-05-05',
-        resign_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        DESCRIPTION: '十佳员工',
-        ISACTIVE: '在职',
-        CREATED: '',
-        CREATEBY: '',
-        UPDATED: '',
-        UPDATEBY: '',
-        REMOVE: ''
-      }, {
-        id: '3',
-        ORG_ID: '',
-        CLIENT_ID: '',
-        username: '老吴',
-        gender: '男',
-        phone: '123456',
-        id_card: '123',
-        birthday: '1956-05-05',
-        hire_date: '2020-05-05',
-        resign_date: '2020-05-05',
-        imgset_dir: '',
-        profile_photo: '',
-        DESCRIPTION: '十佳员工',
-        ISACTIVE: '在职',
-        CREATED: '',
-        CREATEBY: '',
-        UPDATED: '',
-        UPDATEBY: '',
-        REMOVE: ''
-      }]
+
+      tableData: []
+
     }
   },
   methods: {
+
     cancel (formName) {
       // this.visible = false
       // console.log(this.visible)
       this.$refs[formName].resetFields();
     },
+
     submit (ID, formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -222,7 +165,53 @@ export default {
         }
       });
     },
+
+    /*
+    * 获取义工信息
+    * */
+    getEmployerInfo () {
+
+      let _this = this;
+
+      _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/employee-info/list-info').then(res => {
+
+        if (res.data.code === 0) {
+
+          _this.tableData = res.data.data;
+          // console.log(_this.tableData);
+
+          for (let i = 0; i <= _this.tableData.length; i++) {
+
+            // console.log(_this.tableData[i].gender);
+            if (_this.tableData[i].gender == 1) {
+              _this.tableData[i].gender = '男';
+            }
+
+          }
+
+        } else {
+
+          console.log('请求失败')
+
+        }
+
+      }).catch(error => {
+
+          console.log(error)
+
+        }
+      );
+
+    },
+
+  },
+
+  mounted () {
+
+    this.getEmployerInfo()
+
   }
+
 }
 </script>
 

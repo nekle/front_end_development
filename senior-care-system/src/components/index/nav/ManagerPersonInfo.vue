@@ -18,7 +18,7 @@
       <i class="el-icon-phone">电话:{{managerData.phone}}</i>
     </div>
     <div class="detail">
-      <i class="el-icon-message">出生日期：{{managerData.birthday}}</i>
+      <i class="el-icon-date">出生日期：{{managerData.birthday}}</i>
     </div>
     <div class="editPerson">
       <el-popover
@@ -45,6 +45,7 @@ export default {
 
   data () {
     return {
+
       avatarSrc: '../static/imgs/bcgD.jpg',
       managerData: {
         real_name: '',
@@ -55,6 +56,7 @@ export default {
         description: '',
         gender: ''
       }
+
     }
   },
 

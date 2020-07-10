@@ -40,8 +40,8 @@ Vue.$cookies.config('3d')
 
 axios.interceptors.request.use(
   config => {
-    console.log('发送请求')
-    console.log(localStorage.getItem('token'))
+    // console.log('发送请求')
+    // console.log(localStorage.getItem('token'))
     if (localStorage.getItem('token')) {
       // console.log('请求头加入token')
       config.headers.token = localStorage.getItem('token')

@@ -7,7 +7,7 @@
         <el-tab-pane label="待处理或处理中" name="solving">
           <div>
             <el-row>
-              <el-col :span="6" v-for="event in eventList" :key="event" :offset="1">
+              <el-col :span="6" v-for="event in eventList" :key="event.id" :offset="1">
                 <el-card :body-style="{ margin:'10px' }" shadow="hover">
 
                   <img :src="event.imgs"
@@ -31,7 +31,7 @@
                       <span>{{event.type_level}}</span>
                     </div>
                     <div>
-                      <el-button type="primary" class="button">处理完成</el-button>
+                      <el-button type="primary" class="button" @click="handleEvent(event.id)">处理完成</el-button>
                     </div>
                   </div>
                 </el-card>
@@ -42,7 +42,7 @@
         <el-tab-pane label="已经处理" name="solved">
           <div>
             <el-row>
-              <el-col :span="6" v-for="event in finishedList" :key="event" :offset="1">
+              <el-col :span="6" v-for="event in finishedList" :key="event.id" :offset="1">
                 <el-card :body-style="{ margin:'10px' }" shadow="hover">
 
                   <img :src=event.imgs
@@ -98,6 +98,9 @@ export default {
 
   methods: {
 
+    /*
+    * 获取未处理和已经处理的事件列表
+    * */
     getEventList () {
       let _this = this;
       let params = new URLSearchParams();
@@ -131,6 +134,32 @@ export default {
           console.log(_this.finishedList);
         } else {
           console.log('获取完成事件失败')
+        }
+
+      })
+
+    },
+
+    /*
+    * 处理事件
+    * @params [Number] id 事件的id
+    * */
+    handleEvent (id) {
+      let _this = this;
+      let params = new URLSearchParams();
+      params.append('id', Number(id));
+      params.append('description', '处理完成');
+
+      _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/event/update', params).then(response => {
+
+        if (response.data.code === 0) {
+
+          console.log('事件处理成功')
+          _this.getEventList()
+        } else {
+
+          console.log('事件处理失败')
+
         }
 
       })

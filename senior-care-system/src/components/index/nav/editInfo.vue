@@ -16,6 +16,8 @@
       <el-form-item label="生日" prop="birthday">
         <el-col :span="15">
           <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.birthday"
+                          format="yyyy 年 MM 月 dd 日"
+                          value-format="yyyy-MM-dd"
                           style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
@@ -32,8 +34,6 @@
   </el-container>
 </template>
 <script>
-
-import axios from 'axios'
 
 export default {
   name: 'editInfo',
@@ -131,15 +131,26 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 这里写AXIOS 请求， 传修改后的信息
-          var params = new URLSearchParams()
-          params.append('nicheng', this.ruleForm.nicheng)
-          params.append('phone', this.ruleForm.phone)
-          params.append('email', this.ruleForm.email)
+          let _this = this
+          let params = new URLSearchParams()
+          let gender = 1;
+          params.append('real_name', _this.ruleForm.real_name)
+          params.append('phone', _this.ruleForm.phone)
+          params.append('birthday', _this.ruleForm.birthday)
+          params.append('description', _this.ruleForm.birthday)
 
-          axios.post('http://' + this.$ip + ':' + this.$port + '/user/account/changeinfo', params).then(res => {
+          if (_this.ruleForm.gender == '男') {
+            gender = 1
+          } else {
+            gender = 0
+          }
+
+          params.append('gender', gender)
+
+          _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/sys-user-info/update-info', params).then(res => {
             console.log(res.data)
             if (res.data.code === 0) {
-              alert('个人信息修改成功！')
+              alert('个人信息修改成功！请重新登录以适应修改')
             } else {
               alert('个人信息修改失败！')
             }

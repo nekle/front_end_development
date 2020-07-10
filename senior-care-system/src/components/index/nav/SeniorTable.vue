@@ -155,120 +155,6 @@ export default {
 
       },
 
-      // 读取的数据
-      // tableData: [{
-      //   ID: '1',
-      //   ORG_ID: '',
-      //   CLIENT_ID: '',
-      //   username: '老李',
-      //   gender: '男',
-      //   phone: '123456',
-      //   id_card: '123',
-      //   birthday: '1956-05-05',
-      //   checkin_date: '2020-05-05',
-      //   checkout_date: '2020-05-05',
-      //   imgset_dir: '',
-      //   profile_photo: '',
-      //   room_number: '101',
-      //   firstguardian_name: '小李',
-      //   firstguardian_relationship: '父子',
-      //   firstguardian_phone: '123',
-      //   firstguardian_wechat: 'xiaoli',
-      //   secondguardian_name: '小张',
-      //   secondguardian_relationship: '父女',
-      //   secondguardian_phone: '123',
-      //   secondguardian_wechat: 'xiaozhang'
-      // }, {
-      //   ID: '2',
-      //   ORG_ID: '',
-      //   CLIENT_ID: '',
-      //   username: '老张',
-      //   gender: '女',
-      //   phone: '123456',
-      //   id_card: '123',
-      //   birthday: '1956-05-05',
-      //   checkin_date: '2020-05-05',
-      //   checkout_date: '2020-05-05',
-      //   imgset_dir: '',
-      //   profile_photo: '',
-      //   room_number: '101',
-      //   firstguardian_name: '小李',
-      //   firstguardian_relationship: '母子',
-      //   firstguardian_phone: '123',
-      //   firstguardian_wechat: 'xiaoli',
-      //   secondguardian_name: '小张',
-      //   secondguardian_relationship: '母女',
-      //   secondguardian_phone: '123',
-      //   secondguardian_wechat: 'xiaozhang'
-      // }, {
-      //   ID: '3',
-      //   ORG_ID: '',
-      //   CLIENT_ID: '',
-      //   username: '老陈',
-      //   gender: '男',
-      //   phone: '123456',
-      //   id_card: '123',
-      //   birthday: '1956-05-05',
-      //   checkin_date: '2020-05-05',
-      //   checkout_date: '2020-05-05',
-      //   imgset_dir: '',
-      //   profile_photo: '',
-      //   room_number: '101',
-      //   firstguardian_name: '小李',
-      //   firstguardian_relationship: '父子',
-      //   firstguardian_phone: '123',
-      //   firstguardian_wechat: 'xiaoli',
-      //   secondguardian_name: '小张',
-      //   secondguardian_relationship: '父女',
-      //   secondguardian_phone: '123',
-      //   secondguardian_wechat: 'xiaozhang'
-      // }, {
-      //   ID: '3',
-      //   ORG_ID: '',
-      //   CLIENT_ID: '',
-      //   username: '老吴',
-      //   gender: '男',
-      //   phone: '123456',
-      //   id_card: '123',
-      //   birthday: '1956-05-05',
-      //   checkin_date: '2020-05-05',
-      //   checkout_date: '2020-05-05',
-      //   imgset_dir: '',
-      //   profile_photo: '',
-      //   room_number: '101',
-      //   firstguardian_name: '小李',
-      //   firstguardian_relationship: '父子',
-      //   firstguardian_phone: '123',
-      //   firstguardian_wechat: 'xiaoli',
-      //   secondguardian_name: '小张',
-      //   secondguardian_relationship: '父女',
-      //   secondguardian_phone: '123',
-      //   secondguardian_wechat: 'xiaozhang'
-      // },
-      //   {
-      //     ID: '4',
-      //     ORG_ID: '',
-      //     CLIENT_ID: '',
-      //     username: '老周',
-      //     gender: '男',
-      //     phone: '123456',
-      //     id_card: '123',
-      //     birthday: '1956-05-05',
-      //     checkin_date: '2020-05-05',
-      //     checkout_date: '2020-05-05',
-      //     imgset_dir: '',
-      //     profile_photo: '',
-      //     room_number: '101',
-      //     firstguardian_name: '小李',
-      //     firstguardian_relationship: '父子',
-      //     firstguardian_phone: '123',
-      //     firstguardian_wechat: 'xiaoli',
-      //     secondguardian_name: '小张',
-      //     secondguardian_relationship: '父女',
-      //     secondguardian_phone: '123',
-      //     secondguardian_wechat: 'xiaozhang'
-      //   }]
-
       //请求到的老人数据
       tableData: [],
     }
@@ -284,13 +170,21 @@ export default {
 
       _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/list-info').then(res => {
 
-        _this.tableData = res.data.data;
-        // console.log(_this.tableData);
-        for (let i = 0; i <= _this.tableData.length; i++) {
-          // console.log(_this.tableData[i].gender);
-          if (_this.tableData[i].gender == 1) {
-            _this.tableData[i].gender = '男';
+        if (res.data.code === 0) {
+
+          _this.tableData = res.data.data;
+
+          for (let i = 0; i <= _this.tableData.length; i++) {
+
+            if (_this.tableData[i].gender == 1) {
+
+              _this.tableData[i].gender = '男';
+
+            }
           }
+
+        } else {
+          console.log('获取老人信息失败')
         }
 
       }).catch(error => {
