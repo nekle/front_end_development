@@ -36,7 +36,7 @@
 <script>
 
 export default {
-  name: 'editInfo',
+  name: 'AddVolunteer',
 
   data () {
 

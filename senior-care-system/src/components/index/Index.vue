@@ -24,14 +24,14 @@
           </el-drawer>
         </div>
       </el-header>
-      <el-container direction="horizontal" style="height: 840px;backgroundColor: rgba(217, 236, 255, .3)">
+      <el-container direction="horizontal" style="backgroundColor: rgba(217, 236, 255, .3)">
         <el-tabs tab-position="left"
                  style="font: 30px/1.7 'Helvetica Neue'" type="card"
                  v-model="activeName">
           <el-tab-pane label="概览" name="overview">
             <overview />
           </el-tab-pane>
-          <el-tab-pane label="老人行为监控" name="actionWatch">
+          <el-tab-pane label="视频监控" name="actionWatch">
             <actionWatcher />
           </el-tab-pane>
           <el-tab-pane label="监控数据可视化" name="dataVisualize">
@@ -45,14 +45,25 @@
           <el-tab-pane label="老人信息" name="oldInfo">
             <SeniorTable />
           </el-tab-pane>
-          <el-tab-pane label="员工信息" name="staffInfo">
-            <StaffTable />
-          </el-tab-pane>
           <el-tab-pane label="义工信息" name="volunteerInfo">
             <VolunteerTable />
           </el-tab-pane>
+          <el-tab-pane label="员工信息" name="staffInfo">
+            <StaffTable />
+          </el-tab-pane>
           <el-tab-pane label="管理员信息" name="managerInfo">
             <ManagerTable />
+          </el-tab-pane>
+          <el-tab-pane label="信息导入" name="infoImport">
+            <el-popover
+              placement="right"
+              width="600"
+              trigger="click">
+              <AddOldMan />
+              <el-button slot="reference" icon="el-icon-download" type="primary">添加老人信息</el-button>
+              <el-button slot="reference" icon="el-icon-download" type="primary">添加义工信息</el-button>
+              <el-button slot="reference" icon="el-icon-download" type="primary">添加员工信息</el-button>
+            </el-popover>
           </el-tab-pane>
         </el-tabs>
       </el-container>
@@ -71,6 +82,7 @@ import ManagerTable from './nav/ManagerTable'
 import ManagerPersonInfo from './nav/ManagerPersonInfo'
 import Overview from './nav/overview/Overview';
 import EventList from './nav/EventList';
+import AddOldMan from './nav/PersonInfoAdd/AddOldMan';
 
 export default {
   name: 'Index',
@@ -95,6 +107,7 @@ export default {
   },
 
   components: {
+    AddOldMan,
     EventList,
     Overview,
     ManagerPersonInfo,
@@ -122,20 +135,34 @@ export default {
     },
 
     open () { // 新事件提醒
-      this.$notify({
-        title: '新事件发生',
-        message: '您有新事件待处理',
-        showClose: false,
-        // duration:0,
-        type: 'warning'
+
+      this.$axios.post('http://' + this.$ip + ':' + this.$port + '/event/read').then(response => {
+
+        console.log(response)
+
+        if (response.data.code === 0) {
+
+          if (response.data.data === 1) {
+            this.$notify({
+              title: '新事件发生',
+              message: '您有新事件待处理',
+              showClose: false,
+              duration: 5000,
+              type: 'warning'
+            })
+          }
+
+        }
+
       })
+
     }
 
   },
   mounted () {
     this.$nextTick(() => {
       setInterval(this.refresh, 2500)
-      setInterval(this.open, 60000)
+      setInterval(this.open, 5000)
     })
   }
 }
@@ -165,4 +192,5 @@ export default {
     display: inline-block;
     margin-left: 200px;
   }
+
 </style>

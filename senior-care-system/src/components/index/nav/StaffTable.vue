@@ -3,7 +3,9 @@
     :data="tableData"
     style="width: 1750px;height: 850px"
     :stripe="true"
-    :border="true">
+    :border="true"
+    :default-sort="{prop: 'id', order: 'ascending'}"
+  >
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
@@ -37,7 +39,9 @@
     <el-table-column
       label="ID"
       prop="id"
-      :resizable="false">
+      :resizable="false"
+      sortable
+    >
     </el-table-column>
     <el-table-column
       label="员工姓名"

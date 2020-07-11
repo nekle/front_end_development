@@ -14,7 +14,13 @@
           </el-container>
           <el-container style="margin-left: 147.5px">
             <el-button type="primary" @click="login">登录</el-button>
-            <el-button type="primary" @click="forget">忘记密码</el-button>
+            <el-popover
+              placement="right"
+              width="600"
+              trigger="click">
+              <forget-p-w />
+              <el-button type="primary" slot="reference">忘记密码</el-button>
+            </el-popover>
             <el-button type="primary" @click="register">注册新用户</el-button>
           </el-container>
           <div style="font: 20px/24px 'Microsoft YaHei';color: White;margin-top: 15px ;">
@@ -33,11 +39,15 @@
     </div>
   </div>
 </template>
+
 <script>
+
 import {mapMutations} from 'vuex'
+import ForgetPW from './index/nav/ForgetPW';
 
 export default {
   name: 'login',
+  components: {ForgetPW},
   data () {
     return {
       header: '用户登录',
@@ -95,7 +105,7 @@ export default {
           console.log(_this.userToken)
           // 将用户token保存到vuex中
           _this.changeLogin({token: _this.userToken})
-          alert('登陆成功')
+          // alert('登陆成功')
           this.$router.push('/Index')
         }
       }).catch(error => {

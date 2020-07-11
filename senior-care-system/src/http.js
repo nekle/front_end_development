@@ -1,5 +1,4 @@
 import axios from 'axios';
-import store from '../store/index';
 
 // 创建axios实例
 var instance = axios.create({timeout: 1000 * 12});

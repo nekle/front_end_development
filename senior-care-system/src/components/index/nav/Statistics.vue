@@ -36,7 +36,7 @@ export default {
             {name: '开心', max: 100},
             {name: '悲伤', max: 100},
             {name: '愤怒', max: 100},
-            {name: '激动', max: 100},
+            {name: '痛苦', max: 100},
             {name: '一般', max: 100}
           ]
         },

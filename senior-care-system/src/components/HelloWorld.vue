@@ -40,4 +40,5 @@ export default {
     color: white;
     font: 24px/24px 'Microsoft Himalaya';
   }
+
 </style>

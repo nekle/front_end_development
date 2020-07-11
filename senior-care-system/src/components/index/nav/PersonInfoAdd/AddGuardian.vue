@@ -3,7 +3,7 @@
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="真实姓名" prop="real_name">
         <el-col :span="15">
-          <el-input v-model="ruleForm.real_name"></el-input>
+          <el-input v-model="ruleForm.username"></el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
@@ -21,9 +21,9 @@
                           style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="简介" prop="description">
-        <el-col :span="200">
-          <el-input type="textarea" v-model="ruleForm.description" :rows="9" maxlength="150" show-word-limit></el-input>
+      <el-form-item label="健康状况" prop="description">
+        <el-col :span="100">
+          <el-input type="textarea" v-model="ruleForm.health_state" :rows="5" maxlength="50" show-word-limit></el-input>
         </el-col>
       </el-form-item>
       <el-form-item>
@@ -36,7 +36,7 @@
 <script>
 
 export default {
-  name: 'editInfo',
+  name: 'AddOldMan',
 
   data () {
 
@@ -86,7 +86,7 @@ export default {
 
     var validate_des = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入简介'))
+        callback(new Error('请输入身体状况'))
       } else {
         if (this.ruleForm.checkPass !== '') {
           this.$refs.ruleForm.validateField('checkPass')
@@ -98,15 +98,15 @@ export default {
     return {
 
       ruleForm: {
-        real_name: '',
+        username: '',
         phone: '',
         birthday: '',
-        description: '',
+        health_state: '',
         gender: '男'
       },
 
       rules: {
-        real_name: [
+        username: [
           {validator: validate_real_name, trigger: 'blur'}
         ],
         phone: [
@@ -115,7 +115,7 @@ export default {
         birthday: [
           {validator: validate_birthday, trigger: 'blur'}
         ],
-        description: [
+        health_state: [
           {validator: validate_des, trigger: 'blur'}
         ],
         gender: [
@@ -134,10 +134,10 @@ export default {
           let _this = this
           let params = new URLSearchParams()
           let gender = 1;
-          params.append('real_name', _this.ruleForm.real_name)
+          params.append('username', _this.ruleForm.username)
           params.append('phone', _this.ruleForm.phone)
           params.append('birthday', _this.ruleForm.birthday)
-          params.append('description', _this.ruleForm.birthday)
+          params.append('health_state', _this.ruleForm.health_state)
 
           if (_this.ruleForm.gender == '男') {
             gender = 1
@@ -147,15 +147,15 @@ export default {
 
           params.append('gender', gender)
 
-          _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/sys-user-info/update-info', params).then(res => {
+          _this.$axios.post('http://' + _this.$ip + ':' + _this.$port + '/user/elder-info/add-info', params).then(res => {
             console.log(res.data)
             if (res.data.code === 0) {
 
-              alert('个人信息修改成功!刷新页面起效')
+              alert('添加信息成功!刷新页面起效')
 
             } else {
 
-              alert('个人信息修改失败！')
+              alert('添加信息失败！')
 
             }
           }).catch(error => {
@@ -174,19 +174,6 @@ export default {
     resetForm (formName) {
       this.$refs[formName].resetFields()
     }
-  },
-
-  mounted () { // 个人信息
-    axios.post('http://' + this.$ip + ':' + this.$port + '/user/sys-user-info/get-info').then(res => {
-
-      let jsonObj = JSON.parse(JSON.stringify(res.data));
-
-      this.ruleForm.real_name = jsonObj.data.real_name;
-      this.ruleForm.phone = jsonObj.data.phone;
-
-    }).catch(error => {
-      console.log(error)
-    })
   }
 
 }
